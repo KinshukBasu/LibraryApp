@@ -1,13 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :signon
 
   private
 
-  def current_user
-    User.where(id: session[:user_id]).first
+  def signon
+   @user =  User.where(id: session[:user_id]).first
+
+    if (@user == nil)
+      puts 'hi'
+      redirect_to login_path
+      return @user
+    else
+      puts 'hey'
+      return @user
+    end
   end
 
-  helper_method :current_user
+  helper_method :signon
 
-  end
-
+  helper_method :getUpComingBookings
+  helper_method :getPastBookings
+end

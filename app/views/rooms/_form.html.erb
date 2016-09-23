@@ -10,22 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-
-
     <div class="field">
-      <%= f.label :location %>
-      <%= f.select(:location,options_for_select([['D.H.Hill', 'D.H.Hill'], ['James.B.Hunt', 'James.B.Hunt'],['','']], '')) %>
+      <%= f.label :room_number %>
+      <%= f.text_field :room_number %>
     </div>
 
-
     <div class="field">
-      <%= f.label :size %>
-      <%= f.select(:size,options_for_select([['Small - 4 chairs', 4], ['Medium - 6 chairs', 6],['Large - 12 chairs',12],['',0]], 0)) %>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
     </div>
 
+    <div class="field">
+      <%= f.label :isAvailable %>
+      Yes<%= f.radio_button :isAvailable, true %>
+      No<%= f.radio_button :isAvailable, false %>
+    </div>
 
-    <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

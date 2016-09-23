@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Sqlite (Xerial) - development.sqlite3" uuid="80721b1a-35f7-4a29-b602-09cc3506c79b">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - development.sqlite3" uuid="6a4a3e3c-5cf9-4af1-b2d3-00f381b72107">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Ruby Rails Project\LibraryApp\db\development.sqlite3</jdbc-url>
     </data-source>
   </component>
 </project>

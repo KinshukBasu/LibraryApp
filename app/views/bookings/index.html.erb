@@ -4,11 +4,11 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Userid</th>
-      <th>Room no</th>
-      <th>Intime</th>
-      <th>Outtime</th>
+    <tr><th>ID</th>
+      <th>User ID</th>
+      <th>Room ID</th>
+      <th>Check In</th>
+      <th>Check Out</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,11 @@
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.userid %></td>
-        <td><%= booking.room_no %></td>
-        <td><%= booking.intime %></td>
-        <td><%= booking.outtime %></td>
+        <td><%= booking.id %></td>
+        <td><%= booking.user_id %></td>
+        <td><%= booking.room_id %></td>
+        <td><%= booking.checkin%></td>
+        <td><%= booking.checkout%></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>

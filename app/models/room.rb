@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
 
+  has_many :bookings
 
-  validates :location, :presence => true
-  validates :size, :presence => true
+  validates :room_number, :address, :isAvailable,
+            presence: true
 end
