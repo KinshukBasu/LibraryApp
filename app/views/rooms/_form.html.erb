@@ -11,22 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :room_no %>
-    <%= f.number_field :room_no %>
-  </div>
 
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
 
-  <div class="field">
-    <%= f.label :size %>
-    <%= f.text_field :size %>
-  </div>
+    <div class="field">
+      <%= f.label :location %>
+      <%= f.select(:location,options_for_select([['D.H.Hill', 'D.H.Hill'], ['James.B.Hunt', 'James.B.Hunt'],['','']], '')) %>
+    </div>
 
-  <div class="actions">
+
+    <div class="field">
+      <%= f.label :size %>
+      <%= f.select(:size,options_for_select([['Small - 4 chairs', 4], ['Medium - 6 chairs', 6],['Large - 12 chairs',12],['',0]], 0)) %>
+    </div>
+
+
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
