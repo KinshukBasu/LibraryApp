@@ -15,11 +15,10 @@
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td><%= room.room_no %></td>
+        <td><%= room.id %></td>
         <td><%= room.location %></td>
         <td><%= room.size %></td>
         <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
