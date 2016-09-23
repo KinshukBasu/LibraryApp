@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates :name, :presence => true
-  validates :password_digest, :presence => true
+  has_many :bookings
+  validates :name,:role,
+            presence: true
+
 end

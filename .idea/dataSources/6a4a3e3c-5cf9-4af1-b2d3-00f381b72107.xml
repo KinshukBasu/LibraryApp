@@ -1,0 +1,136 @@
+<dataSource name="Sqlite (Xerial) - development.sqlite3">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="2.6">
+    <schema id="1">
+      <visible>1</visible>
+    </schema>
+    <table id="2" parent="1" name="ar_internal_metadata" />
+    <table id="3" parent="1" name="bookings" />
+    <table id="4" parent="1" name="rooms" />
+    <table id="5" parent="1" name="schema_migrations" />
+    <table id="6" parent="1" name="sqlite_sequence" />
+    <table id="7" parent="1" name="users" />
+    <column id="8" parent="2" name="key">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="9" parent="2" name="value">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="10" parent="2" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="11" parent="2" name="updated_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <key id="12" parent="2">
+      <columns>key</columns>
+      <primary>1</primary>
+    </key>
+    <column id="13" parent="3" name="id">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="14" parent="3" name="user_id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="15" parent="3" name="room_id">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="16" parent="3" name="address">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="17" parent="3" name="checkin">
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="18" parent="3" name="checkout">
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="19" parent="3" name="bookingType">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="20" parent="3" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="21" parent="3" name="updated_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <key id="22" parent="3">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="23" parent="4" name="id">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="24" parent="4" name="room_number">
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="25" parent="4" name="address">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="26" parent="4" name="isAvailable">
+      <data-type>BOOLEAN(0,-1)|4</data-type>
+    </column>
+    <column id="27" parent="4" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="28" parent="4" name="updated_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <key id="29" parent="4">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="30" parent="5" name="version">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <key id="31" parent="5">
+      <columns>version</columns>
+      <primary>1</primary>
+    </key>
+    <column id="32" parent="6" name="name">
+      <data-type>(0,-1)|12</data-type>
+    </column>
+    <column id="33" parent="6" name="seq">
+      <data-type>(0,-1)|12</data-type>
+    </column>
+    <column id="34" parent="7" name="id">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(0,-1)|4</data-type>
+    </column>
+    <column id="35" parent="7" name="name">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="36" parent="7" name="role">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="37" parent="7" name="address">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="38" parent="7" name="created_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="39" parent="7" name="updated_at">
+      <mandatory>1</mandatory>
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="40" parent="7" name="password_digest">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="41" parent="7" name="string">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <key id="42" parent="7">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

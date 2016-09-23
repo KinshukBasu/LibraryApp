@@ -1,3 +1,5 @@
+include Record
+
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +26,19 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    booking_values = booking_params.each do |key, value|
+      if value=="true"
+        value =true
+      elsif value=="false"
+             value=false
+      elsif value.is_a?(DateTime)
+             puts "hi"
+
+      end
+
+
+    end
+    @booking = Booking.new(booking_values)
 
     respond_to do |format|
       if @booking.save
@@ -61,6 +75,10 @@ class BookingsController < ApplicationController
     end
   end
 
+  def booking_history
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
@@ -69,6 +87,8 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:userid, :room_no, :intime, :outtime)
+      params.fetch(:booking, {})
     end
 end
+
+

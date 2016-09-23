@@ -1,21 +1,31 @@
 class SessionsController < ApplicationController
-  def new
+  before_filter :signon
+  def destroy
+
   end
 
-  def create
-    user  =User.find_by_name(params[:name])
-
+  def signon
+    if(params[:what] == 'logout')
+      session[:user_id] = nil
+      render :thankyou, notice: 'Logged Out!'
+      return
+    end
+    user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'Logged in!'
+      redirect_to welcome_display_path
+      return
     else
       render :new
+      return
     end
   end
 
-  def destroy
-    session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out!'
+  def new
 
   end
+
+
+
+
 end

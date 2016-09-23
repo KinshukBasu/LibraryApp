@@ -11,25 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :userid %>
-    <%= f.number_field :userid %>
-  </div>
+    <div class="field">
+      <%= f.label :user_id %>
+      <%= f.text_field :user_id %>
+    </div>
 
-  <div class="field">
-    <%= f.label :room_no %>
-    <%= f.number_field :room_no %>
-  </div>
+    <div class="field">
+      <%= f.label :room_id %>
+      <%= f.text_field :room_id %>
+    </div>
 
-  <div class="field">
-    <%= f.label :intime %>
-    <%= f.datetime_select :intime %>
-  </div>
+    <div class="field">
+      <%= f.label :bookingType %>
+      <%= f.text_field :bookingType %>
+    </div>
 
-  <div class="field">
-    <%= f.label :outtime %>
-    <%= f.datetime_select :outtime %>
-  </div>
+    <div class="field">
+      <%= f.label :checkin %>
+      <%= f.datetime_select :checkin %>
+    </div>
+
+    <div class="field">
+      <%= f.label :checkout %>
+      <%= f.datetime_select :checkout %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>

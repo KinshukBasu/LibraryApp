@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  userid: 1
-  room_no: 1
-  intime: 2016-09-12 17:00:08
-  outtime: 2016-09-12 17:00:08
+  userID: 1
+  roomID: 1
+  checkin: 2016-09-17 13:21:57
+  checkout: 2016-09-17 13:21:57
+  bookingType: MyString
 
 two:
-  userid: 1
-  room_no: 1
-  intime: 2016-09-12 17:00:08
-  outtime: 2016-09-12 17:00:08
+  userID: 1
+  roomID: 1
+  checkin: 2016-09-17 13:21:57
+  checkout: 2016-09-17 13:21:57
+  bookingType: MyString

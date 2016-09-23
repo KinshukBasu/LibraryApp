@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  room_no: 1
-  location: MyString
-  size: MyString
+  room_number: 1
+  address: MyString
+  isAvailable: false
 
 two:
-  room_no: 1
-  location: MyString
-  size: MyString
+  room_number: 1
+  address: MyString
+  isAvailable: false

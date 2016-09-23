@@ -24,7 +24,15 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    @room = Room.new(room_params)
+    room_values = room_params.each do |key, value|
+      if value=="true"
+        value =true
+        else if value=="false"
+               value=false
+             end
+      end
+    end
+    @room = Room.new(room_values)
 
     respond_to do |format|
       if @room.save
@@ -69,6 +77,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:room_no, :location, :size)
+      params.fetch(:room, {})
     end
 end

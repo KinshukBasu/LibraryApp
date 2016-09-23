@@ -1,4 +1,10 @@
+include Record
+
 class WelcomeController < ApplicationController
-  def index
+  def display
+    @user = User.where(id: session[:user_id]).first
   end
+
 end
+
+
