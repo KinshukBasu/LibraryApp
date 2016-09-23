@@ -11,15 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :userid %>
-    <%= f.number_field :userid %>
+  <div>
+    <%= f.label :Location %>
+    <%= f.select :location, options_for_select([['Hunt'], ['Hill']])%>
   </div>
 
-  <div class="field">
-    <%= f.label :room_no %>
-    <%= f.number_field :room_no %>
+  <div>
+    <%= f.label :Size %>
+    <%= f.select :size, options_for_select([[4], [6],[8]])%>
   </div>
+
+  <% #= Since location and size are not attributes of Bookings model, I had to put attr_accessor for them in the model to accept them %>
 
   <div class="field">
     <%= f.label :intime %>
@@ -32,6 +34,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Search" %>
   </div>
 <% end %>
