@@ -1,4 +1,4 @@
-class BookingsController < ApplicationController
+class BookingsController < AccessController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   # GET /bookings

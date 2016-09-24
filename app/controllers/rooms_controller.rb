@@ -1,4 +1,4 @@
-class RoomsController < ApplicationController
+class RoomsController < AccessController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms

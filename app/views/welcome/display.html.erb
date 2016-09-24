@@ -1,0 +1,40 @@
+<h1>Welcome  <%= @user.name %> to Library</h1>
+
+<div class=".upcomingBookings">
+  <% upcomingBoookings = getUpComingBookings%>
+  <% if (upcomingBoookings.size > 0)%>
+    <P>Hey you got some upcoming booking!</P>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Room No.</th>
+            <th>Check In Time</th>
+            <th>Check Out Time</th>
+            <th colspan="3"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% upcomingBoookings.each do |upcoming| %>
+        <tr>
+            <td><%= upcoming.id %></td>
+            <td><%= upcoming.room_no %></td>
+            <td><%= Time.parse(upcoming.intime).strftime('%m/%d/%Y %H:%M') %></td>
+            <td><%= Time.parse(upcoming.outimr).strftime('%m/%d/%Y %H:%M') %></td>
+
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+
+      <% else %>
+      <P>You have no upcoming bookings</P>
+
+      <% end %>
+</div>
+
+
+<div>
+    <P>Click <%=link_to 'here', bookingHistory_path %> if you would like to view your booking history</P>
+</div>
