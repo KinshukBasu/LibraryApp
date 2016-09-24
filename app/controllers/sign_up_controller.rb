@@ -5,10 +5,12 @@ class SignUpController < ApplicationController
 
   # POST
   def create
+
+
     @reader = User.new(reader_params)
 
     if(@reader.save)
-      redirect_to login_path, notice: "User #{@reader.name}Successfully Created. PLease Login"
+      redirect_to login_path, notice: "User #{@reader.name} Successfully Created. PLease Login"
     else
       @reader.errors
       redirect_to logout_path
