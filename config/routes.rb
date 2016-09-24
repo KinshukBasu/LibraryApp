@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#signon', as: 'signon'
   post '/sign_up/create', to: 'sign_up#create', as: 'sign_up_create_post'
 
-  resources :bookings
+  get '/bookings/search', :controller => 'bookings', :action => 'search'
+
+
+  resources :bookings do
+    get :search, :on => :member, :as => :search
+  end
+
   resources :rooms
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
