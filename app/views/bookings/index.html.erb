@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<%= my_time = Time.now %>
 
 <h1>Search Rooms</h1>
 
@@ -20,14 +21,14 @@
 
 
     <div class="field">
-      <%= label_tag(:intime, "Select In Time:") %>
-      <%= select_datetime DateTime.now, prefix: :intime %>
+      <%= label_tag(:indate, "Select Date:") %>
+      <%= select_date Date.today, prefix: :intime %>
     </div>
 
 
     <div class="field">
-      <%= label_tag(:outtime, "Select Out Time:") %>
-      <%= select_datetime DateTime.now, prefix: :outtime %>
+      <%= label_tag(:intime, "Select In Time:") %>
+      <%= select_hour my_time, start_hour:6, end_hour:22, ampm:true,prefix: :intime %>
     </div>
 
 
