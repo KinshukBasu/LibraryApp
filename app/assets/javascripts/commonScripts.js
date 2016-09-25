@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function(){
-            if((window.location.pathname.indexOf("/login") >=0)) {
+            if((window.location.pathname.indexOf("/login") >=0) || (window.location.pathname.indexOf("/signup") >=0)) {
                 $('.headerHomePage').hide();
             }
     $(".hideSearchButton").hide()

@@ -22,4 +22,5 @@ class AccessController < ApplicationController
 
   helper_method :getUpComingBookings
   helper_method :getPastBookings
+  helper_method :getOngoingBookings
 end
