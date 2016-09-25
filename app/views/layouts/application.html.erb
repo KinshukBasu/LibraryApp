@@ -6,15 +6,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
   <% if @user != nil %>
       <div class="header" style="display: block">
         <%= link_to "Log Out", logout_path %>
-        <%= link_to "Edit Profile", user_edit_path%>
+        <%= link_to "Edit Profile", root_path+"users/edit/"+@user['id'].to_s%>
       </div>
   <% end %>
+  <div class="headerHomePage">
+    <%= link_to "Home Page", root_path %>
+  </div>
     <%= yield %>
   </body>
 </html>

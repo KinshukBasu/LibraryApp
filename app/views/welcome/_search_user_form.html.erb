@@ -1,0 +1,26 @@
+<div>
+  Enter at least one of the following details about the User you wish to search for.
+
+  <%= form_tag({controller: users_path, action: 'user_search'},{:class => 'search_form'}) do%>
+
+      <div class="field">
+        <%= label_tag(:name, 'Name') %>
+        <%= text_field_tag :name %>
+      </div>
+
+      <div class="field">
+        <%= label_tag(:email, "Email") %>
+        <%= email_field_tag :email %>
+      </div>
+
+      <div class="field">
+        <%= label_tag(:phoneNumber, "Phone Number") %>
+        <%= text_field_tag :phoneNumber %>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag('Search')%>
+      </div>
+  <% end%>
+
+</div>
