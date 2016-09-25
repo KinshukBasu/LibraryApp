@@ -21,6 +21,10 @@ class UsersController < AccessController
   def edit
   end
 
+  def user_search
+
+  end
+
   # POST /users
   # POST /users.json
   def create
@@ -41,9 +45,8 @@ class UsersController < AccessController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      if @user.update(user_edit_params)
+        format.html { redirect_to welcome_display_path, notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -64,11 +67,15 @@ class UsersController < AccessController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by_id(session[:user]['id'])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :role)
     end
+
+  def user_edit_params
+    params.require(:user).permit(:name, :address, :phoneNumber)
+  end
 end

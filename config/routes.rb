@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#signon', as: 'signon'
   post '/sign_up/create', to: 'sign_up#create', as: 'sign_up_create_post'
 
+  get '/users/edit', to: 'users#edit', as: 'user_edit'
+
   get '/bookings/search', :controller => 'bookings', :action => 'search'
 
 

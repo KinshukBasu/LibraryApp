@@ -1,4 +1,6 @@
-<h1>Welcome  <%= @user.name %> to Library</h1>
+<p><%= notice %></p>
+
+<h1>Welcome <% if (@user['role'] == 1)%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>

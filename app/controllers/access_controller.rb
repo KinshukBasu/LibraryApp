@@ -6,16 +6,16 @@ class AccessController < ApplicationController
   private
 
   def signon
-    @user =  User.where(id: session[:user_id]).first
+    @user =  session[:user]
 
     if (@user == nil)
 
       redirect_to login_path
       return @user
-    else
+    end
 
       return @user
-    end
+
   end
 
   helper_method :signon
