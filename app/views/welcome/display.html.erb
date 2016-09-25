@@ -5,7 +5,7 @@
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
   <% if (upcomingBoookings.size > 0)%>
-    <P>Hey you got some upcoming booking!</P>
+    Hey you got some upcoming booking!
 
     <table>
         <thead>
@@ -31,12 +31,23 @@
     </table>
 
       <% else %>
-      <P>You have no upcoming bookings</P>
+      You have no upcoming bookings
 
       <% end %>
 </div>
 
-
+<br><br>
 <div>
-    <P>Click <%=link_to 'here', bookingHistory_path %> if you would like to view your booking history</P>
+    Click <%=link_to 'here', "/bookings/booking_history/"+session[:user]['id'].to_s %> if you would like to view your booking history
 </div>
+<br><br>
+
+<% if((session[:user]['role']) == "admin")%>
+<div>
+ <label class="searchText">Search for users</label>
+  <button class="searchButton" onclick="showSearch()">Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
+  <div class="searchForm" style="display: none;">
+    <%= render 'search_user_form'%>
+  </div>
+</div>
+<% end %>
