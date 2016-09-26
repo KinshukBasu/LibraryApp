@@ -1,6 +1,6 @@
 <p><%= notice %></p>
 
-<h1>Welcome <% if (@user['role'] == 1)%> Admin <% end%> <%= @user['name'] %> to Library</h1>
+<h1>Welcome <% if (@user['role'] == 'admin' || @user['role'] == 'super')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
@@ -42,7 +42,7 @@
 </div>
 <br><br>
 
-<% if((session[:user]['role']) == "admin")%>
+<% if((session[:user]['role']) == "admin" || (session[:user]['role']) == "super")%>
 <div>
  <label class="searchText">Search for users</label>
   <button class="searchButton" onclick="showSearch()">Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
