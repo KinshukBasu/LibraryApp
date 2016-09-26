@@ -34,6 +34,10 @@ class UsersController < AccessController
   end
 
   def user_information
+    if(session[:user]['role'] == 'normal')
+      redirect_to welcome_display_path
+      return
+    end
     @resultUser = User.where("role != 0")
 
     if (params[:name] != nil)
