@@ -1,11 +1,21 @@
 class BookingsController < AccessController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:booking_history]
+
 
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @booking=Booking.new
+    pass_params=params
+    if pass_params.key?("date")
+      pass_params[:time]=params[:time][:hour]
+      pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
+      @return_params= Booking.find_availiblty(pass_params)
+      render :new, data: pass_params
+      return @return_params
+    end
+    @bookings=Booking.all
+
   end
 
   # GET /bookings/1
@@ -26,7 +36,6 @@ class BookingsController < AccessController
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -55,29 +64,27 @@ class BookingsController < AccessController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-    @booking.destroy
+    # @booking.destroy
+    @booking.booking_status='cancelled'
     respond_to do |format|
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
-  def booking_history
+  def search
 
   end
+
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
-
-  def set_user
-    @user = User.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def booking_params
-      params.require(:booking).permit(:userid, :room_no, :intime, :outtime)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def booking_params
+    params.require(:booking).permit(:userid, :room_no, :intime)
+  end
 end

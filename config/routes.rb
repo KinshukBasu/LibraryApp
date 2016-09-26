@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post '/user/delete', to: 'users#delete_user', as: 'delete_user'
 
 
+
   resources :bookings do
     get :search, :on => :member, :as => :search
   end
