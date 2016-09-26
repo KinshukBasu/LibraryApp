@@ -8,7 +8,7 @@
     <th>Date</th>
     <th>Time</th>
   </tr>
-  <% @return_params.each do |data| %>       #start loop
+  <% @return_params.each do |data| %>
       <tr>
         <td><%= data[2] %></td>
         <td><%= data[4] %></td>
@@ -17,7 +17,7 @@
         <td><%= data[2] %></td>
         <td><%= link_to 'Book this room', bookings_path %></td>
       </tr>
-  <% end %>                        #end loop
+  <% end %>
 </table>
 
 
