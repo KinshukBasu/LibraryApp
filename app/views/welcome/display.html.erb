@@ -50,6 +50,10 @@
 
 <% if((session[:user]['role']) == "admin")%>
     <div>
+      <a href="app/views/rooms/new.html.erb">Create a new room</a>
+    </div>
+
+    <div>
       <label class="searchText">Search for users</label>
       <button class="searchButton" onclick="showSearch()">Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
       <div class="searchForm" style="display: none;">
