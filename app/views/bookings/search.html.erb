@@ -3,12 +3,12 @@
 <%= form_tag bookings_path do%>
     <div>
       <%= label_tag :Location %>
-      <%= select_tag :location, options_for_select([['Hunt'], ['Hill']])%>
+      <%= select_tag :location, options_for_select([['D.H.Hill'], ['James.B.Hunt']])%>
     </div>
 
     <div>
       <%= label_tag :Size %>
-      <%= select_tag :size, options_for_select([[4], [6],[8]])%>
+      <%= select_tag :size, options_for_select([[4], [6],[12]])%>
     </div>
 
     <% #= Since location and size are not attributes of Bookings model, I had to put attr_accessor for them in the model to accept them %>
@@ -18,10 +18,6 @@
       <%= f.datetime_select :intime %>
     </div>
 
-    <div class="field">
-      <%= f.label :outtime %>
-      <%= f.datetime_select :outtime %>
-    </div>
 
     <div class="actions">
       <%= submit_tag "Search" %>

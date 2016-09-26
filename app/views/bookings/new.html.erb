@@ -1,4 +1,4 @@
-<h1>Here are your booking/s</h1>
+<h1>Avilable booking/s</h1>
 
 <table>
   <tr>
@@ -8,10 +8,10 @@
     <th>Date</th>
     <th>Time</th>
   </tr>
-  <% @data.each do |data| %>       #start loop
+  <% @return_params.each do |data| %>       #start loop
       <tr>
-        <td><%= data[2] %></td>  #column field1 in your database
-        <td><%= data[4] %></td>  #column field2 in your database
+        <td><%= data[2] %></td>
+        <td><%= data[4] %></td>
         <td><%= data[3] %></td>
         <td><%= data[1] %></td>
         <td><%= data[2] %></td>
@@ -21,3 +21,4 @@
 </table>
 
 
+<%= render 'form', booking: @booking %>
