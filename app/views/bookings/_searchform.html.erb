@@ -1,0 +1,35 @@
+<%= my_time = Time.now %>
+
+<h1>Search Rooms</h1>
+
+<p>Search for available rooms:</p>
+
+<%= form_tag(bookings_path, :method => "get", id: "search-form") do %>
+
+
+    <div class="field">
+      <%= label_tag(:location, "Select location:") %>
+      <%= select_tag :location, options_for_select([['James.B.Hunt'], ['D.H.Hill']]) %>
+    </div>
+
+
+    <div class="field">
+      <%= label_tag(:size, "Select size:") %>
+      <%= select_tag :size, options_for_select([[4], [6],[8]]) %>
+    </div>
+
+
+    <div class="field">
+      <%= label_tag(:date, "Select Date:") %>
+      <%= select_date Date.today, prefix: :date %>
+    </div>
+
+
+    <div class="field">
+      <%= label_tag(:time, "Select In Time:") %>
+      <%= select_hour my_time, start_hour:6, end_hour:22, ampm:true,prefix: :time %>
+    </div>
+
+
+    <%= submit_tag "Search" %>
+<% end %>

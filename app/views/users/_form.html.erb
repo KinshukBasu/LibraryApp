@@ -17,6 +17,21 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phoneNumber %>
+    <%= f.text_field :phoneNumber %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
@@ -25,6 +40,12 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
+
+    <div class="field">
+      <%= f.label :role %>
+      <%=f.select(:role,options_for_select([['Normal', 'Normal'], ['Admin', 'Admin']]))%>
+    </div>
+</div>
 
 
 

@@ -56,16 +56,20 @@
     <div>
       <%=link_to 'View all rooms', "/rooms" %>
     </div>
-
+    <br>
     <div>
       <%=link_to 'View all users', "/users" %>
     </div>
-
+    or
     <div>
-      <label class="searchText">Search for users</label>
-      <button class="searchButton" onclick="showSearch()">Show Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
+
+      <button class="searchButton" onclick="showSearch()">Search for Users</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
       <div class="searchForm" style="display: none;">
         <%= render 'search_user_form'%>
       </div>
+    </div>
+    <br>
+    <div>
+      <%=link_to 'View all bookings', "/bookings" %>
     </div>
 <% end %>
