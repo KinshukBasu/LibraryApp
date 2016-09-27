@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/users/edit/:id', to: 'users#edit', as: 'user_edit'
 
+  get '/rooms/edit/:id', to: 'rooms#edit', as: 'room_edit'
+
   get '/bookings/search', :controller => 'bookings', :action => 'search'
 
   post '/search/user', to: 'users#user_search', as: 'user_search'
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
   post '/user/change_role', to: 'users#change_user_role', as: 'user_change_role'
 
   post '/user/delete', to: 'users#delete_user', as: 'delete_user'
+
+  get '/rooms/index', to: 'rooms#index'
 
 
 

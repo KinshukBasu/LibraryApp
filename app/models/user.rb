@@ -5,5 +5,5 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :email, uniqueness:  true
 
-  enum role: [:super, :admin, :normal]
+  enum role: [:Super, :Admin, :Normal]
 end

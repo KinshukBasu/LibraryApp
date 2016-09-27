@@ -1,6 +1,6 @@
 <p><%= notice %></p>
 
-<h1>Welcome <% if (@user['role'] == 1)%> Admin <% end%> <%= @user['name'] %> to Library</h1>
+<h1>Welcome <% if (@user['role'] != 'Normal')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
@@ -31,7 +31,7 @@
       </table>
 
   <% else %>
-      You have no upcoming bookings
+      You have no upcoming bookings.
 
   <% end %>
 </div>
@@ -48,14 +48,22 @@
 </div>
 <br><br>
 
-<% if((session[:user]['role']) == "admin")%>
+<% if((session[:user]['role']) != "Normal")%>
     <div>
-      <a href="app/views/rooms/new.html.erb">Create a new room</a>
+      <%= link_to 'Create a New Room', new_room_path %>
+    </div>
+
+    <div>
+      <%=link_to 'View all rooms', "/rooms" %>
+    </div>
+
+    <div>
+      <%=link_to 'View all users', "/users" %>
     </div>
 
     <div>
       <label class="searchText">Search for users</label>
-      <button class="searchButton" onclick="showSearch()">Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
+      <button class="searchButton" onclick="showSearch()">Show Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
       <div class="searchForm" style="display: none;">
         <%= render 'search_user_form'%>
       </div>
