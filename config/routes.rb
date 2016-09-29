@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   post '/user/delete', to: 'users#delete_user', as: 'delete_user'
 
 
+  get '/bookings/search_static', :controller => 'bookings', :action => 'search_static'
+
+  post '/bookings', to: 'bookings#create', as: 'create_bookings'
 
   resources :bookings do
     get :search, :on => :member, :as => :search
