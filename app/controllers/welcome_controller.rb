@@ -1,5 +1,6 @@
 class WelcomeController < AccessController
-  def display
 
+  def display
   end
+
 end

@@ -6,5 +6,7 @@ class Room < ApplicationRecord
   end
   validates :location, :presence => true
   validates :size, :presence => true
-  attr_accessor :is_existing
+
+
+
 end

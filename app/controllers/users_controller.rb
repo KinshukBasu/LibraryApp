@@ -34,7 +34,7 @@ class UsersController < AccessController
   end
 
   def user_information
-    if(session[:user]['role'] == 'normal')
+    if(session[:user]['role'] == 'Normal')
       redirect_to welcome_display_path
       return
     end
@@ -121,7 +121,7 @@ class UsersController < AccessController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :role)
+      params.require(:user).permit(:email, :name, :password, :password_confirmation, :role)
     end
 
   def user_edit_params

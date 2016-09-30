@@ -9,7 +9,7 @@ class SignUpController < ApplicationController
     @adminUser = User.find_by(:email=> 'kinshuk@gmail.com')
 
     if(@adminUser != nil)
-    @adminUser.update(:role => 'super')
+    @adminUser.update(:role => 'Super')
     end
 
     @reader = User.new(reader_params)

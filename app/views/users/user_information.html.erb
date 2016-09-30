@@ -23,14 +23,14 @@
         <td><%= user.phoneNumber %></td>
         <td><%= user.role %></td>
         <td>
-        <% if (user.role != 'super')%>
+        <% if (user.role != 'Super')%>
           <%= link_to 'Edit', root_path+"users/edit/"+user['id'].to_s %>
         <%end%>
         <%= link_to 'Check Reservations', root_path+"bookings/booking_history/"+user['id'].to_s %>
-        <% if (user.role == 'normal')%>
+        <% if (user.role == 'Normal')%>
               <a onclick="makeAdmin(<%= user.id %>)"> Make Admin</a>
         <%end%>
-        <% if ((user.id != session[:user]['id']) && user.role != 'super')%>
+        <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
               <a onclick="deleteUser(<%= user.id %>)"> Delete User</a>
         <% end%>
         </td>

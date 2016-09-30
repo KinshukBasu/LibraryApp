@@ -6,5 +6,11 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>memory</secret-storage>
     </data-source>
+    <data-source name="Sqlite (Xerial) - development.sqlite3 [2]" uuid="4904350b-a2d8-4e50-b0a8-09fa6f25140e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
+      <first-sync>true</first-sync>
+    </data-source>
   </component>
 </project>

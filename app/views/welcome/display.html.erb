@@ -1,6 +1,6 @@
 <p><%= notice %></p>
 
-<h1>Welcome <% if (@user['role'] == 1)%> Admin <% end%> <%= @user['name'] %> to Library</h1>
+<h1>Welcome <% if (@user['role'] != 'Normal')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
@@ -13,7 +13,7 @@
           <th>Booking ID</th>
           <th>Room No.</th>
           <th>Check In Time</th>
-          <th>Check Out Time</th>
+
           <th colspan="3"></th>
         </tr>
         </thead>
@@ -22,8 +22,8 @@
             <tr>
               <td><%= upcoming.id %></td>
               <td><%= upcoming.room_no %></td>
-              <td><%= Time.parse(upcoming.intime).strftime('%m/%d/%Y %H:%M') %></td>
-              <td><%= Time.parse(upcoming.outimr).strftime('%m/%d/%Y %H:%M') %></td>
+              <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M')  %></td>
+
 
             </tr>
         <% end %>
@@ -31,7 +31,7 @@
       </table>
 
   <% else %>
-      You have no upcoming bookings
+      You have no upcoming bookings.
 
   <% end %>
 </div>
@@ -48,16 +48,28 @@
 </div>
 <br><br>
 
-<% if((session[:user]['role']) == "admin")%>
+<% if((session[:user]['role']) != "Normal")%>
     <div>
-      <a href="app/views/rooms/new.html.erb">Create a new room</a>
+      <%= link_to 'Create a New Room', new_room_path %>
     </div>
 
     <div>
-      <label class="searchText">Search for users</label>
-      <button class="searchButton" onclick="showSearch()">Search</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
+      <%=link_to 'View all rooms', "/rooms" %>
+    </div>
+    <br>
+    <div>
+      <%=link_to 'View all users', "/users" %>
+    </div>
+    or
+    <div>
+
+      <button class="searchButton" onclick="showSearch()">Search for Users</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
       <div class="searchForm" style="display: none;">
         <%= render 'search_user_form'%>
       </div>
+    </div>
+    <br>
+    <div>
+      <%=link_to 'View all bookings', "/bookings" %>
     </div>
 <% end %>
