@@ -49,6 +49,13 @@
 <br><br>
 
 <% if((session[:user]['role']) != "Normal")%>
+    <h2>Admin Functions</h2>
+
+    <div>
+      <%=link_to 'View all bookings', "/bookings" %>
+    </div>
+
+    <h3>Room Functions</h3>
     <div>
       <%= link_to 'Create a New Room', new_room_path %>
     </div>
@@ -57,6 +64,10 @@
       <%=link_to 'View all rooms', "/rooms" %>
     </div>
     <br>
+    <h3>User Functions</h3>
+    <div>
+      <%= link_to 'Create a New User', new_user_path %>
+    </div>
     <div>
       <%=link_to 'View all users', "/users" %>
     </div>
@@ -69,7 +80,6 @@
       </div>
     </div>
     <br>
-    <div>
-      <%=link_to 'View all bookings', "/bookings" %>
-    </div>
+
 <% end %>
+
