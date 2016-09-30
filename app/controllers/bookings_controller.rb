@@ -5,15 +5,7 @@ class BookingsController < AccessController
   # GET /bookings
   # GET /bookings.json
   def index
-    @booking=Booking.new
-    pass_params=params
-    if pass_params.key?("date")
-      pass_params[:time]=params[:time][:hour]
-      pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
-      @return_params= Booking.find_availiblty(pass_params)
-      render :new, data: pass_params
-      return @return_params
-    end
+
     @bookings=Booking.all
 
   end
@@ -21,6 +13,7 @@ class BookingsController < AccessController
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+
   end
 
   # GET /bookings/new
@@ -35,7 +28,14 @@ class BookingsController < AccessController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @userid=session[:user]['id']
+    @room_no=params[:room_no]
+    @date=params[:date].to_date
+    @t=params[:time]
+    @intime = DateTime.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
+    @booking = Booking.new({:userid=>@userid,:room_no=>@room_no,:intime=>@intime})
+
+
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -71,11 +71,20 @@ class BookingsController < AccessController
       format.json { head :no_content }
     end
   end
+
   def search
+pass_params=params
+ pass_params[:time]=params[:time][:hour]
+pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
+@return_params= Booking.find_availiblty(pass_params)
+render :new, data: pass_params
+return @return_params
 
   end
 
-
+  def search_static
+    render :search
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

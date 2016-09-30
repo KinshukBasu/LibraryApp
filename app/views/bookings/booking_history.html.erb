@@ -16,8 +16,8 @@
     <% getUpComingBookings.each do |upcoming| %>
         <tr>
           <td><%= upcoming.id %></td>
-          <td><%= upcoming.room_id %></td>
-          <td><%= upcoming.checkin.strftime('%m/%d/%Y %H:%M') %></td>
+          <td><%= upcoming.room_no %></td>
+          <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M') %></td>
 
 
         </tr>
@@ -43,8 +43,8 @@
     <% getPastBookings.each do |past| %>
         <tr>
           <td><%= past.id %></td>
-          <td><%= past.room_id %></td>
-          <td><%= past.checkin.strftime('%m/%d/%Y %H:%M') %></td>
+          <td><%= past.room_no %></td>
+          <td><%= past.intime.strftime('%m/%d/%Y %H:%M') %></td>
 
 
         </tr>
