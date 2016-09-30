@@ -5,7 +5,8 @@ class RoomsController < AccessController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+   # @rooms = Room.all
+    @rooms=Room.where(is_existing: true)
   end
 
   # GET /rooms/1
@@ -55,11 +56,13 @@ class RoomsController < AccessController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
-    #@room.destroy
-    @room.is_existing=false
+    @room = Room.find(params[:id])
+    @room.update_attributes!(is_existing: false)
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
+      #end
+
     end
   end
 
