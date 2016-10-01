@@ -32,7 +32,7 @@ class BookingsController < AccessController
     @room_no=params[:room_no]
     @date=params[:date].to_date
     @t=params[:time]
-    @intime = DateTime.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
+    @intime = Time.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
     @booking = Booking.new({:userid=>@userid,:room_no=>@room_no,:intime=>@intime})
 
 
