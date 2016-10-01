@@ -5,13 +5,13 @@ class Booking < ApplicationRecord
 
   def self.find_availiblty(criteria_params)
     return_hash=initialize_hash
-    returnValues=self.joins("Inner join rooms r on r.id=room_no and r.is_existing='t'").where("(r.location=? or '#{criteria_params[:location]}'=='')
- and (r.size=? or '#{criteria_params[:size]}'=='')
- and(strftime('%H',intime ) =? or '#{criteria_params[:time]}'=='')
-and (strftime('%Y-%m-%d', intime) =? or '#{criteria_params[:date]}'=='')
-and (intime  >datetime('now','localtime'))
+    returnValues=self.joins("Inner join rooms r on r.id=room_no and r.is_existing='t'").where("(r.location=? or '#{criteria_params[:location]}' is Null)
+ and (r.size=? or '#{criteria_params[:size]}' is Null)
+ and(to_char(intime,'HH' ) =? or '#{criteria_params[:time]}' is Null)
+and (to_char(intime,'YYYY-MM-DD') =? or '#{criteria_params[:date]}' is Null)
+and (intime  >?)
 and (booking_status =?)
-",criteria_params[:location],criteria_params[:size],criteria_params[:time],criteria_params[:date],'booked')
+",criteria_params[:location],criteria_params[:size],criteria_params[:time],criteria_params[:date],Time.current,'booked')
 
     returnValues.each do|rv|
 
@@ -124,6 +124,8 @@ end
     return true
 
   end
+
+
 
 
 
