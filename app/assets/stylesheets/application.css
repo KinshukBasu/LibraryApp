@@ -13,3 +13,91 @@
  *= require_tree .
  *= require_self
  */
+body{
+    height: 85vh;
+    background-color: #000;
+    color: #f2e7e7;
+    margin: 0px;
+    overflow: hidden;
+}
+div.container {
+    width: 96%;
+
+    position: absolute;
+    overflow: auto;
+top:10%;
+    bottom:5%;
+    max-height:85%;
+    margin-left:2%;
+
+
+}
+
+a{
+    color: #f2e7e7;
+}
+a:visited{
+    color: #f2e7e7;
+}
+
+.topOfPage, .bottomOfPage {
+
+    color: white;
+    background-color: darkred;
+    clear: left;
+    text-align: center;
+    position:fixed;
+    overflow:hidden;
+    width:100%;
+
+}
+.topOfPage{
+    top:0;
+    height:10%;
+
+}
+
+.bottomOfPage {
+
+    top:95%;
+    bottom: 0%;
+    width: 100%;
+    height:5%;
+}
+
+nav {
+    width: initial;
+    margin: 0;
+    padding: 1em;
+    height: 0%;
+    text-align: -webkit-right;
+}
+
+
+
+.footerContent{
+  vertical-align: bottom;
+}
+
+.ncsuLogo{
+    position:fixed;
+    top:1%;
+    right:3%;
+    width:4%;
+    height:8%;
+
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(1,2,1,0.3);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 0 6px rgba(1,2,1,0.5);
+}

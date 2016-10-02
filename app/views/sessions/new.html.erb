@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
-<h1>Let's get you into the Library</h1>
+<p style="font-size: 23px;margin-left: 5%;">Let's get you into the Library</p>
 
-<%= form_tag signon_path do %>
+<%= form_tag signon_path, :class => 'signonform' do %>
     <div class="field">
       <%= label_tag 'E-mail' %><br>
       <%= text_field_tag :email %>
@@ -16,8 +15,12 @@
 
 <% end %>
 
-<div class="signup">
-  <p>Haven't signed up yet?
-    <%= link_to 'Sign Up', signup_path%></p>
-
+<div class="loginMessage">
 </div>
+
+<div class="signup">
+  <p style="font-size: 16px;margin-left: 5%;">Haven't signed up yet?
+    <%= link_to 'Sign Up', signup_path%></p>
+</div>
+
+<img class="loginScreenImg"src="/assets/wolfHowl.jpg" alt="Howl">
