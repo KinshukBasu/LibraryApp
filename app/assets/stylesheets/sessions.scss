@@ -1,3 +1,38 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signonform{
+  margin-left: 5%;
+}
+
+.loginScreenImg{
+  position:fixed;
+  top:34%;
+  bottom:5%;
+  width:700px;
+  max-height: 100%;
+  right:8%;
+}
+
+.loginMessage{
+  margin-left: 5%;
+}
+
+.actions input{
+  background-color: darkred;
+  border-color: darkred;
+  color: white;
+}
+
+.logOutImage{
+  width: 50%;
+  margin-left: 25%;
+}
+
+.logOutText{
+
+  text-align: center;
+  font-size: large;
+  color: ivory;
+}
