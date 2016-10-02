@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userid: 1
+  room_no: 1
+  intime: 2016-10-02 10:44:21
+
+two:
+  userid: 1
+  room_no: 1
+  intime: 2016-10-02 10:44:21

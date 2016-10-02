@@ -28,6 +28,7 @@ class BookingsController < AccessController
   # POST /bookings
   # POST /bookings.json
   def create
+
     @userid=session[:user]['id']
     @room_no=params[:room_no]
     @date=params[:date].to_date
@@ -41,7 +42,8 @@ class BookingsController < AccessController
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
-        format.html { render :new }
+      #  format.html { render :new }
+        format.html { redirect_to bookings_search_static_path, notice:'You can only book one room at one time'  }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
@@ -64,10 +66,12 @@ class BookingsController < AccessController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-    # @booking.destroy
-    @booking.booking_status='cancelled'
+    @deletedbooking = Deletedbooking.new({:userid=>@booking.userid,:room_no=>@booking.room_no,:intime=>@booking.intime})
+    @deletedbooking.save
+    @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+     # format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to "/bookings/booking_history/"+session[:user]['id'].to_s, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
