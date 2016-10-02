@@ -1,17 +1,23 @@
 class Booking < ApplicationRecord
-  attr_accessor :booking_status
+  validates :intime, uniqueness: { scope: :userid
+ }
+
 
   @slot_to_int={"00"=>0,"02"=>1,"04"=>2,"06"=>3,"08"=>4,"10"=>5,"12"=>6,"14"=>7,"16"=>8,"18"=>9,"20"=>10,"22"=>11}
 
   def self.find_availiblty(criteria_params)
     return_hash=initialize_hash
-    returnValues=self.joins("Inner join rooms r on r.id=room_no and r.is_existing='t'").where("(r.location=? or '#{criteria_params[:location]}' is Null)
- and (r.size=? or '#{criteria_params[:size]}' is Null)
- and(to_char(intime,'HH' ) =? or '#{criteria_params[:time]}' is Null)
-and (to_char(intime,'YYYY-MM-DD') =? or '#{criteria_params[:date]}' is Null)
+ returnValues=self.joins("Inner join rooms r on r.id=room_no and r.is_existing='t'")
+.where("(r.location=? or ? is Null)
+ and (r.size=? or ? is Null)
+ and(to_char(intime,'HH24' ) =? or ? is Null)
+and (to_char(intime,'YYYY-MM-DD') =? or ? is Null)
 and (intime  >?)
 and (booking_status =?)
-",criteria_params[:location],criteria_params[:size],criteria_params[:time],criteria_params[:date],Time.current,'booked')
+",criteria_params[:location],criteria_params[:location],criteria_params[:size],criteria_params[:size],
+criteria_params[:time],criteria_params[:time], criteria_params[:date],criteria_params[:date],
+Time.current,'booked')
+
 
     returnValues.each do|rv|
 

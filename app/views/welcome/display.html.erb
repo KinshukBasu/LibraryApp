@@ -23,7 +23,7 @@
               <td><%= upcoming.id %></td>
               <td><%= upcoming.room_no %></td>
               <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M')  %></td>
-
+              <td><%= link_to 'Cancel Booking', upcoming, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
             </tr>
         <% end %>
