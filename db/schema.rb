@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161002144421) do
     t.integer  "userid"
     t.integer  "room_no"
     t.datetime "intime"
-    t.string   "booking_status", default: "t"
+    t.string   "booking_status", default: 'booked'
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
