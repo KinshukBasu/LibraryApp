@@ -1,5 +1,11 @@
 <h1>Avilable booking/s</h1>
 
+<% if (@user['role'] != 'Normal')%>
+    <div>
+      <%= label_tag :UserId %>
+      <%= select_tag :userid, options_for_select([['',0],[4], [6],[12]])%>
+    </div>
+<% end%>
 <table>
   <tr>
     <th>Room Number</th>
