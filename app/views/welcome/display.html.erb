@@ -2,6 +2,7 @@
 
 <h1>Welcome <% if (@user['role'] != 'Normal')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
+<% if (@user['role'] == 'Normal')%>
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
   <% if (upcomingBoookings.size > 0)%>
@@ -34,12 +35,18 @@
       You have no upcoming bookings.
 
   <% end %>
+
 </div>
+
 
 <br><br>
 <div>
-  Click <%=link_to 'here', "/bookings/booking_history/"+session[:user]['id'].to_s %> if you would like to view your booking history
+
+      Click <%=link_to 'here', "/bookings/booking_history/"+session[:user]['id'].to_s %> if you would like to view your booking history
+
 </div>
+
+<% end %>
 <br><br>
 
 <br><br>

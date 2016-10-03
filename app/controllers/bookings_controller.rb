@@ -78,7 +78,6 @@ class BookingsController < AccessController
 
   def search
 pass_params=params
- pass_params[:time]=params[:time][:hour]
 pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
 @return_params= Booking.find_availiblty(pass_params)
 render :new, data: pass_params
