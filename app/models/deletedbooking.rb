@@ -1,0 +1,2 @@
+class Deletedbooking < ApplicationRecord
+end

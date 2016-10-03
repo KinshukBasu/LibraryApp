@@ -1,26 +1,32 @@
 <h1>Search Rooms</h1>
+<%= my_time = Time.now %>
+<p id="notice"><%= notice %></p>
 
-<%= form_tag bookings_path do%>
+<%= form_tag(bookings_search_path, :method => "get") do %>
+
+
     <div>
       <%= label_tag :Location %>
-      <%= select_tag :location, options_for_select([['Hunt'], ['Hill']])%>
+      <%= select_tag :location, options_for_select([['',nil],['D.H.Hill'], ['James.B.Hunt']])%>
     </div>
 
     <div>
       <%= label_tag :Size %>
-      <%= select_tag :size, options_for_select([[4], [6],[8]])%>
+      <%= select_tag :size, options_for_select([['',0],[4], [6],[12]])%>
     </div>
 
     <% #= Since location and size are not attributes of Bookings model, I had to put attr_accessor for them in the model to accept them %>
 
+
     <div class="field">
-      <%= label_tag :intime %>
-      <%= f.datetime_select :intime %>
+      <%= label_tag(:time, "Select In Time:") %>
+      <%= select_tag :time,options_for_select([['',nil],['00:00', "00"], ['02:00', "02"],['04:00', "04"],['06:00', "06"],['08:00', "08"],['10:00', "10"],['12:00', "12"],['14:00', "14"],['16:00', "16"],['18:00', "18"],['20:00', "20"],['22:00', "22"]]) %>
+
     </div>
 
     <div class="field">
-      <%= f.label :outtime %>
-      <%= f.datetime_select :outtime %>
+      <%= label_tag(:date, "Select Date:") %>
+      <%= select_date Date.today,include_blank: true,start_year: 2016 , prefix: :date %>
     </div>
 
     <div class="actions">

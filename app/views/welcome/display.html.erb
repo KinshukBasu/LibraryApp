@@ -1,42 +1,92 @@
 <p><%= notice %></p>
 
-<h1>Welcome <% if (@user['role'] == 1)%> Admin <% end%> <%= @user['name'] %> to Library</h1>
+<h1>Welcome <% if (@user['role'] != 'Normal')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
+<% if (@user['role'] == 'Normal')%>
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
   <% if (upcomingBoookings.size > 0)%>
-    <P>Hey you got some upcoming booking!</P>
+      Hey you got some upcoming booking!
 
-    <table>
+      <table>
         <thead>
         <tr>
-            <th>Booking ID</th>
-            <th>Room No.</th>
-            <th>Check In Time</th>
-            <th>Check Out Time</th>
-            <th colspan="3"></th>
+          <th>Booking ID</th>
+          <th>Room No.</th>
+          <th>Check In Time</th>
+
+          <th colspan="3"></th>
         </tr>
         </thead>
         <tbody>
         <% upcomingBoookings.each do |upcoming| %>
-        <tr>
-            <td><%= upcoming.id %></td>
-            <td><%= upcoming.room_no %></td>
-            <td><%= Time.parse(upcoming.intime).strftime('%m/%d/%Y %H:%M') %></td>
-            <td><%= Time.parse(upcoming.outimr).strftime('%m/%d/%Y %H:%M') %></td>
+            <tr>
+              <td><%= upcoming.id %></td>
+              <td><%= upcoming.room_no %></td>
+              <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M')  %></td>
+              <td><%= link_to 'Cancel Booking', upcoming, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-        </tr>
+            </tr>
         <% end %>
         </tbody>
-    </table>
+      </table>
 
-      <% else %>
-      <P>You have no upcoming bookings</P>
+  <% else %>
+      You have no upcoming bookings.
 
-      <% end %>
+  <% end %>
+
 </div>
 
 
+<br><br>
 <div>
-    <P>Click <%=link_to 'here', bookingHistory_path %> if you would like to view your booking history</P>
+
+      Click <%=link_to 'here', "/bookings/booking_history/"+session[:user]['id'].to_s %> if you would like to view your booking history
+
 </div>
+
+<% end %>
+<br><br>
+
+<br><br>
+<div>
+    Click <%=link_to 'here', "/bookings/search_static" %> if you would like to book a room
+</div>
+<br><br>
+
+<% if((session[:user]['role']) != "Normal")%>
+    <h2>Admin Functions</h2>
+
+    <div>
+      <%=link_to 'View all bookings', "/bookings" %>
+    </div>
+
+    <h3>Room Functions</h3>
+    <div>
+      <%= link_to 'Create a New Room', new_room_path %>
+    </div>
+
+    <div>
+      <%=link_to 'View all rooms', "/rooms" %>
+    </div>
+    <br>
+    <h3>User Functions</h3>
+    <div>
+      <%= link_to 'Create a New User', new_user_path %>
+    </div>
+    <div>
+      <%=link_to 'View all users', "/users" %>
+    </div>
+    or
+    <div>
+
+      <button class="searchButton" onclick="showSearch()">Search for Users</button> <button class="hideSearchButton" onclick="hideSearch()" style="display: none;">Hide Search</button>
+      <div class="searchForm" style="display: none;">
+        <%= render 'search_user_form'%>
+      </div>
+    </div>
+    <br>
+
+<% end %>
+

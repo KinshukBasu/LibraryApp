@@ -1,37 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Search Rooms</h1>
 
-<p>Search for available rooms:</p>
+<h1>Bookings</h1>
 
-<%= form_tag(bookings_path, :method => "get", id: "search-form") do %>
+<table>
+  <thead>
+  <tr>
+    <th>UserID</th>
+    <th>RoomNo</th>
+    <th>In Time</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.userid %></td>
+        <td><%= booking.room_no %></td>
+        <td><%= booking.intime %></td>
+        <td><%= booking.booking_status %></td>
+        <td><%= link_to 'Show', booking %></td>
+        <td><%= link_to 'Edit', root_path+"bookings/edit/"+booking['id'].to_s %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 
 
-    <div class="field">
-      <%= label_tag(:location, "Select location:") %>
-      <%= select_tag :location, options_for_select([['Hunt'], ['Hill']]) %>
-     </div>
+<%= render 'searchform', booking: @booking %>
 
 
-    <div class="field">
-      <%= label_tag(:size, "Select size:") %>
-      <%= select_tag :size, options_for_select([[4], [6],[8]]) %>
-    </div>
-
-
-    <div class="field">
-      <%= label_tag(:intime, "Select In Time:") %>
-      <%= select_datetime DateTime.now, prefix: :intime %>
-    </div>
-
-
-    <div class="field">
-      <%= label_tag(:outtime, "Select Out Time:") %>
-      <%= select_datetime DateTime.now, prefix: :outtime %>
-    </div>
-
-
-    <%= submit_tag "Search" %>
-    <% end %>
-
-<%= link_to 'New Booking', new_booking_path %>

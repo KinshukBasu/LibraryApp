@@ -1,5 +1,29 @@
-<h1>New Booking</h1>
+<h1>Avilable booking/s</h1>
 
-<%= render 'form', booking: @booking %>
+<% if (@user['role'] != 'Normal')%>
+    <div>
+      <%= label_tag :UserId %>
+      <%= select_tag :userid, options_for_select([['',0],[4], [6],[12]])%>
+    </div>
+<% end%>
+<table>
+  <tr>
+    <th>Room Number</th>
+    <th>Room Size</th>
+    <th>Location</th>
+    <th>Date</th>
+    <th>Time</th>
+  </tr>
+  <% @return_params.each do |data| %>
+      <tr>
+        <td><%= data[2] %></td>
+        <td><%= data[4] %></td>
+        <td><%= data[3] %></td>
+        <td><%= data[0] %></td>
+        <td><%= data[1] %></td>
+        <td><%= link_to 'Book this room', create_bookings_path(:time => data[1], :date => data[0], :room_no => data[2]), :method => "post" %></td>
+      </tr>
+  <% end %>
+</table>
 
-<%= link_to 'Back', bookings_path %>
+

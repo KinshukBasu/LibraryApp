@@ -6,15 +6,39 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-  <% if @user != nil %>
-      <div class="header" style="display: block">
-        <%= link_to "Log Out", logout_path %>
-        <%= link_to "Edit Profile", user_edit_path%>
-      </div>
-  <% end %>
+  <div class="topOfPage">
+    <h1>Wolf Pack Library</h1>
+    <a href="https://www.ncsu.edu/"><img class="ncsuLogo"src="/assets/NCSU Logo" alt="Howl"></a>
+  </div>
+  <div class="container">
+
+
+  <nav>
+
+    <% if @user != nil %>
+
+          <%= link_to "Log Out", logout_path %>
+          <%= link_to "Edit Profile", '/users/'+@user['id'].to_s+'/edit'%>
+
+    <% end %>
+
+
+
+      <%= link_to "Home Page", root_path, :class => 'headerHomePage'%>
+
+
+  </nav>
+
+
     <%= yield %>
+
+
+    </div>
+  <div class="bottomOfPage"><span class="footerContent">Winter is Coming</span></div>
   </body>
+
 </html>

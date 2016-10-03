@@ -23,6 +23,46 @@ class UsersController < AccessController
 
   def user_search
 
+    @searchParams = params
+
+    respond_to do |format|
+      format.html { redirect_to user_information_path(:name => params[:name] , :email => params[:email], :phoneNumber => params[:phoneNumber]) }
+    end
+
+
+
+  end
+
+  def user_information
+    if(session[:user]['role'] == 'Normal')
+      redirect_to welcome_display_path
+      return
+    end
+    @resultUser = User.where("role != 0")
+
+    if (params[:name] != nil)
+      @resultUser = @resultUser.where("name like :name",{:name => "%#{params[:name]}%"})
+    end
+
+    if (params[:email] != nil && params[:email] != '')
+      @resultUser = @resultUser.where("email = ?",params[:email])
+    end
+
+    if (params[:phoneNumber] != nil  && params[:phoneNumber] != '')
+      @resultUser = @resultUser.where("phoneNumber = ?",params[:phoneNumber])
+    end
+    render 'user_information', resultUser: @resultUser
+  end
+
+  def change_user_role
+    @changeUser = User.find(params[:id])
+
+    if(@changeUser.update(:role => 1))
+      return true
+    else
+      return false
+    end
+
   end
 
   # POST /users
@@ -64,15 +104,24 @@ class UsersController < AccessController
     end
   end
 
+  def delete_user
+    if(User.destroy(params[:id]))
+      return true
+    else
+      return false
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find_by_id(session[:user]['id'])
+      @user = User.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :role)
+      params.require(:user).permit(:email, :name, :password, :password_confirmation, :role)
     end
 
   def user_edit_params

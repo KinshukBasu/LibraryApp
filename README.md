@@ -5,20 +5,13 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version - 2.2
 
-* System dependencies
+Pre-configured admin - kinshuk@gmail.com. Password - 'password'
 
-* Configuration
+Once the user logs in, he/she will be able to see their upcoming bookings, as well as an option to make new bookings.
+If the user is an admin, he will also be able to see an option to search for other users.
 
-* Database creation
+There is also an option 'Edit Profile', in which the user can edit their user details.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The Room Booking page allows you to search for a room using location, size, date and time slot.

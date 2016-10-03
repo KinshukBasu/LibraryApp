@@ -8,7 +8,7 @@
       <th>Booking ID</th>
       <th>Room No.</th>
       <th>Check In Time</th>
-      <th>Check Out Time</th>
+
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -16,9 +16,9 @@
     <% getUpComingBookings.each do |upcoming| %>
         <tr>
           <td><%= upcoming.id %></td>
-          <td><%= upcoming.room_id %></td>
-          <td><%= upcoming.checkin.strftime('%m/%d/%Y %H:%M') %></td>
-          <td><%= upcoming.checkout.strftime('%m/%d/%Y %H:%M') %></td>
+          <td><%= upcoming.room_no %></td>
+          <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M') %></td>
+          <td><%= link_to 'Cancel Booking', upcoming, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
         </tr>
     <% end %>
@@ -35,7 +35,7 @@
       <th>Booking ID</th>
       <th>Room No.</th>
       <th>Check In Time</th>
-      <th>Check Out Time</th>
+
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -43,9 +43,36 @@
     <% getPastBookings.each do |past| %>
         <tr>
           <td><%= past.id %></td>
-          <td><%= past.room_id %></td>
-          <td><%= past.checkin.strftime('%m/%d/%Y %H:%M') %></td>
-          <td><%= past.checkout.strftime('%m/%d/%Y %H:%M') %></td>
+          <td><%= past.room_no %></td>
+          <td><%= past.intime.strftime('%m/%d/%Y %H:%M') %></td>
+
+
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<div class="bookingHistory deletedBookings">
+  <p>Deleted Bookings</p>
+  <table>
+    <thead>
+    <tr>
+      <th>Booking ID</th>
+      <th>Room No.</th>
+      <th>Check In Time</th>
+
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% getDeletedBookings.each do |deleted| %>
+        <tr>
+          <td><%= deleted.id %></td>
+          <td><%= deleted.room_no %></td>
+          <td><%= deleted.intime.strftime('%m/%d/%Y %H:%M') %></td>
+
 
         </tr>
     <% end %>

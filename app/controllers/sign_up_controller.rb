@@ -6,14 +6,28 @@ class SignUpController < ApplicationController
   # POST
   def create
 
+    @adminUser = User.find_by(:email=> 'kinshuk@gmail.com')
+
+    if(@adminUser != nil)
+    @adminUser.update(:role => 'Super')
+    end
 
     @reader = User.new(reader_params)
 
     if(@reader.save)
-      redirect_to login_path, notice: "User #{@reader.name} Successfully Created. PLease Login"
+      render :json =>{:message => "success"}
+      return
     else
-      @reader.errors
-      redirect_to logout_path
+
+     message = ""
+      @reader.errors.messages.each do|k,n|
+        message = message.concat(n[0].to_s).concat(", ")
+      end
+
+     message = message.chomp(', ')
+
+      render :json =>{:message => message}
+      return
     end
   end
 

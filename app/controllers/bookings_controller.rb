@@ -1,15 +1,19 @@
 class BookingsController < AccessController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
+
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+
+    @bookings=Booking.all
+
   end
 
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+
   end
 
   # GET /bookings/new
@@ -24,14 +28,22 @@ class BookingsController < AccessController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+
+    @userid=session[:user]['id']
+    @room_no=params[:room_no]
+    @date=params[:date].to_date
+    @t=params[:time]
+    @intime = Time.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
+    @booking = Booking.new({:userid=>@userid,:room_no=>@room_no,:intime=>@intime})
+
 
     respond_to do |format|
       if @booking.save
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
-        format.html { render :new }
+      #  format.html { render :new }
+        format.html { redirect_to bookings_search_static_path, notice:'You can only book one room at one time'  }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
@@ -54,21 +66,37 @@ class BookingsController < AccessController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
+    @deletedbooking = Deletedbooking.new({:userid=>@booking.userid,:room_no=>@booking.room_no,:intime=>@booking.intime})
+    @deletedbooking.save
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+     # format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to "/bookings/booking_history/"+session[:user]['id'].to_s, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
+  def search
+pass_params=params
+pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
+@return_params= Booking.find_availiblty(pass_params)
+render :new, data: pass_params
+return @return_params
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def booking_params
-      params.require(:booking).permit(:userid, :room_no, :intime, :outtime)
-    end
+  end
+
+  def search_static
+    render :search
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def booking_params
+    params.require(:booking).permit(:userid, :room_no, :intime)
+  end
 end

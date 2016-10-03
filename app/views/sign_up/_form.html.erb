@@ -27,7 +27,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :phoneNumber %>
+      <%= f.label :phoneNumber, "Phone Number" %>
       <%= f.text_field :phoneNumber %>
     </div>
 
@@ -37,11 +37,11 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation %>
     </div>
 
-    <%= f.hidden_field :role, { :value => 'normal'} %>
+    <%= f.hidden_field :role, { :value => 'Normal'} %>
     <div class="actions">
       <%= f.submit %>
     </div>
