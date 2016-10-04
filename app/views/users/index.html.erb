@@ -25,7 +25,7 @@
 
 
         <td>
-          <%= link_to 'Check Reservations', root_path+"bookings/booking_history/"+user['id'].to_s %>
+          <%= link_to 'Check Reservations', root_path+"bookings/booking_history/"+user.id.to_s %>
           <% if (user.role != 'Super')%>
               <%= link_to 'Show', user %>
               <%= link_to 'Edit', root_path+"users/edit/"+user['id'].to_s %>
@@ -38,6 +38,10 @@
           <% if (user.role == 'Normal')%>
               <td><a onclick="makeAdmin(<%= user.id %>)"> Make Admin</a></td>
           <%end%>
+        <% if (user.role == 'Normal')%>
+
+            <td><%=link_to ' Make a Booking', static_search_path(:bookinguserid => user.id ) %></td>
+        <%end%>
 
         </td>
       </tr>

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/rooms/index', to: 'rooms#index'
 
 
-  get '/bookings/search_static', :controller => 'bookings', :action => 'search_static'
+  get '/bookings/search_static', :controller => 'bookings', :action => 'search_static', as:'static_search'
 
   post '/bookings', to: 'bookings#create', as: 'create_bookings'
 

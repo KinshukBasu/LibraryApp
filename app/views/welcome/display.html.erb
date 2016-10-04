@@ -51,7 +51,7 @@
 
 <br><br>
 <div>
-    Click <%=link_to 'here', "/bookings/search_static" %> if you would like to book a room
+    Click <%=link_to 'here', static_search_path(:bookinguserid => session[:user]['id'] )%> if you would like to book a room
 </div>
 <br><br>
 

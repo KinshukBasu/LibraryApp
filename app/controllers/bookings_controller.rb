@@ -28,8 +28,7 @@ class BookingsController < AccessController
   # POST /bookings
   # POST /bookings.json
   def create
-
-    @userid=session[:user]['id']
+    @userid=session[:user]['bookinguserid']
     @room_no=params[:room_no]
     @date=params[:date].to_date
     @t=params[:time]
@@ -70,7 +69,6 @@ class BookingsController < AccessController
     @deletedbooking.save
     @booking.destroy
     respond_to do |format|
-     # format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.html { redirect_to "/bookings/booking_history/"+session[:user]['id'].to_s, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -86,6 +84,7 @@ return @return_params
   end
 
   def search_static
+    session[:user]['bookinguserid']=params[:bookinguserid]
     render :search
   end
 
@@ -99,4 +98,5 @@ return @return_params
   def booking_params
     params.require(:booking).permit(:userid, :room_no, :intime)
   end
+
 end
