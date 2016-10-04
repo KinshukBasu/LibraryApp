@@ -7,6 +7,7 @@ class BookingsController < AccessController
   def index
 
     @bookings=Booking.all
+    @deleted=Deletedbooking.all
 
   end
 
@@ -69,7 +70,8 @@ class BookingsController < AccessController
     @deletedbooking.save
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to "/bookings/booking_history/"+session[:user]['id'].to_s, notice: 'Booking was successfully destroyed.' }
+     # format.html { redirect_to "/bookings/booking_history/"+session[:user]['id'].to_s, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookingHistory_path(:historyuserid => session[:user]['historyuserid']), notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +88,10 @@ return @return_params
   def search_static
     session[:user]['bookinguserid']=params[:bookinguserid]
     render :search
+  end
+
+  def booking_history
+    session[:user]['historyuserid']=params[:historyuserid]
   end
 
   private

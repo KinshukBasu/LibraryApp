@@ -22,8 +22,33 @@
         <td><%= booking.intime %></td>
         <td><%= booking.booking_status %></td>
         <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', root_path+"bookings/edit/"+booking['id'].to_s %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h1>Deleted Bookings</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>UserID</th>
+    <th>RoomNo</th>
+    <th>In Time</th>
+
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @deleted.each do |booking| %>
+      <tr>
+        <td><%= booking.userid %></td>
+        <td><%= booking.room_no %></td>
+        <td><%= booking.intime %></td>
+
+
 
       </tr>
   <% end %>
@@ -31,6 +56,5 @@
 </table>
 
 
-<%= render 'searchform', booking: @booking %>
 
 
