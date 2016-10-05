@@ -15,5 +15,7 @@
   <%= @room.size %>
 </p>
 
-<%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% @msg=upcoming_room_boookings(@room.id) %>
+<%= link_to 'Destroy', @room, method: :delete, data: { confirm: @msg } %> |
+
 <%= link_to 'Back', rooms_path %>

@@ -24,7 +24,7 @@
               <td><%= upcoming.id %></td>
               <td><%= upcoming.room_no %></td>
               <td><%= upcoming.intime.strftime('%m/%d/%Y %H:%M')  %></td>
-              <td><%= link_to 'Cancel Booking', upcoming, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
 
             </tr>
         <% end %>
@@ -42,7 +42,7 @@
 <br><br>
 <div>
 
-      Click <%=link_to 'here', "/bookings/booking_history/"+session[:user]['id'].to_s %> if you would like to view your booking history
+      Click <%=link_to 'here', bookingHistory_path(:historyuserid =>session[:user]['id'] )%> if you would like to view your booking history
 
 </div>
 
