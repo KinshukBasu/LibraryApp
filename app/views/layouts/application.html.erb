@@ -22,7 +22,7 @@
     <% if @user != nil %>
 
           <%= link_to "Log Out", logout_path %>
-          <%= link_to "Edit Profile", '/users/'+@user['id'].to_s+'/edit'%>
+          <%= link_to "Edit Profile", '/users/edit/'+@user['id'].to_s%>
 
     <% end %>
 
