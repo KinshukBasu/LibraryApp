@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   get '/logout', to: 'sessions#signon', as: 'logout', :what => 'logout'
   get 'bookings/booking_history', to: 'bookings#booking_history', as: 'bookingHistory'
+  get 'bookings/room_history', to: 'bookings#room_history', as: 'roomHistory'
   post '/sessions', to: 'sessions#signon', as: 'signon'
   post '/sign_up/create', to: 'sign_up#create', as: 'sign_up_create_post'
 

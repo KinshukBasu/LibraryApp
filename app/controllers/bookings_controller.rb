@@ -99,6 +99,11 @@ return @return_params
     session[:user]['historyuserid'] = params[:historyuserid] if params.key? "historyuserid"
   end
 
+  def room_history
+    roomid = params[:historyroomid] if params.key? "historyroomid"
+    @booking = Booking.where("room_no = ?",roomid)
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_booking
