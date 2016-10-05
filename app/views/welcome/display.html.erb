@@ -55,6 +55,13 @@
 </div>
 <br><br>
 
+<% if((session[:user]['role']) == "Normal")%>
+    <div>
+      <%=link_to 'View all rooms', "/rooms" %>
+    </div>
+<% end %>
+
+
 <% if((session[:user]['role']) != "Normal")%>
     <h2>Admin Functions</h2>
 
