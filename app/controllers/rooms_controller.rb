@@ -58,12 +58,18 @@ class RoomsController < AccessController
   def destroy
     @room = Room.find(params[:id])
     @room.update_attributes!(is_existing: false)
+    delete_from_booking_history
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
       #end
 
     end
+  end
+
+  def delete_from_booking_history
+    Booking.where("room_no = ? AND intime > ?",params[:id],DateTime.current).destroy_all
+
   end
 
 

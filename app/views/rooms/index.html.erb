@@ -20,7 +20,8 @@
         <td><%= room.size %></td>
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', root_path+"rooms/edit/"+room['id'].to_s %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% @msg=upcoming_room_boookings(room.id) %>
+        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm:@msg  } %></td>
 
       </tr>
     <% end %>

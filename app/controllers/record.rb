@@ -19,6 +19,14 @@ module Record
     userID = get_correct_uid
     @booking = Deletedbooking.where("userid = ? ",userID)
   end
+  def upcoming_room_boookings(id)
+    @booking=Booking.where("room_no = ? AND intime > ?",id,DateTime.current)
+    if @booking.size>0
+      @msg="Bookings exist for this room in the future. Are you sure you want to go ahead"
+    else
+      @msg="Are you sure you want to go ahead?"
+    end
+  end
 
   def get_correct_uid
     if session[:user].key?("historyuserid")
