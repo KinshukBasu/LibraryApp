@@ -101,7 +101,9 @@ return @return_params
 
   def room_history
     roomid = params[:historyroomid] if params.key? "historyroomid"
-    @booking = Booking.where("room_no = ?",roomid)
+    @upcomingbooking = Booking.where("room_no = ? AND intime >= ?",roomid,DateTime.current)
+    @pastbooking = Booking.where("room_no = ? AND intime < ?",roomid,DateTime.current)
+    @deletedbooking = Deletedbooking.where("room_no = ?",roomid)
   end
 
   private
