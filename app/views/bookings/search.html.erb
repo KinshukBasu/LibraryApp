@@ -19,14 +19,14 @@
 
 
     <div class="field">
-      <%= label_tag(:time, "Select In Time:") %>
-      <%= select_tag :time,options_for_select([['',nil],['00:00', "00"], ['02:00', "02"],['04:00', "04"],['06:00', "06"],['08:00', "08"],['10:00', "10"],['12:00', "12"],['14:00', "14"],['16:00', "16"],['18:00', "18"],['20:00', "20"],['22:00', "22"]]) %>
+      <%= label_tag(:time, "Select slot:") %>
+      <%= select_tag :time,options_for_select([['',nil],['00:00-02:00', "00"], ['02:00-04:00', "02"],['04:00-06:00', "04"],['06:00-08:00', "06"],['08:00-10:00', "08"],['10:00-12:00', "10"],['12:00-14:00', "12"],['14:00-16:00', "14"],['16:00-18:00', "16"],['18:00-20:00', "18"],['20:00-22:00', "20"],['22:00-00:00', "22"]]) %>
 
     </div>
 
     <div class="field">
       <%= label_tag(:date, "Select Date:") %>
-      <%= select_date Date.today,include_blank: true,start_year: 2016 , prefix: :date %>
+      <%= select_date Date.today ,start_year: 2016 , prefix: :date %>
     </div>
 
     <div class="actions">

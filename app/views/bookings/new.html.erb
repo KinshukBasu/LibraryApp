@@ -13,7 +13,7 @@
         <td><%= data[4] %></td>
         <td><%= data[3] %></td>
         <td><%= data[0] %></td>
-        <td><%= data[1] %></td>
+        <td><%= data[1]+":00" %></td>
         <td><%= link_to 'Book this room', create_bookings_path(:time => data[1], :date => data[0], :room_no => data[2]), :method => "post" %></td>
       </tr>
   <% end %>

@@ -46,7 +46,7 @@
 
 </div>
 
-<% end %>
+
 <br><br>
 
 <br><br>
@@ -54,6 +54,7 @@
     Click <%=link_to 'here', static_search_path(:bookinguserid => session[:user]['id'] )%> if you would like to book a room
 </div>
 <br><br>
+<% end %>
 
 <% if((session[:user]['role']) == "Normal")%>
     <div>
