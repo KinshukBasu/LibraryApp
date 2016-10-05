@@ -98,6 +98,7 @@ class UsersController < AccessController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+    delete_user_bookings(@user.id)
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
@@ -106,11 +107,16 @@ class UsersController < AccessController
 
   def delete_user
     if(User.destroy(params[:id]))
+      delete_user_bookings(params[:id])
       return true
     else
       return false
     end
 
+  end
+
+  def delete_user_bookings(id)
+    Booking.where("userid = ? AND intime > ?",id,DateTime.current).destroy_all
   end
 
   private
