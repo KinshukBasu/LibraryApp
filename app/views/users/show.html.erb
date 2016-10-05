@@ -10,5 +10,20 @@
   <%= @user.role %>
 </p>
 
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>PhoneNumber:</strong>
+  <%= @user.phoneNumber %>
+</p>
+
+<p>
+  <strong>EmailId:</strong>
+  <%= @user.email %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
