@@ -36,14 +36,19 @@ class BookingsController < AccessController
     @intime = Time.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
     @booking = Booking.new({:userid=>@userid,:room_no=>@room_no,:intime=>@intime})
 
+    if((session[:user]['role']) != "Normal")
+      @condition=@booking.save(validate: false)
+    else
+      @condition=@booking.save
+      end
 
     respond_to do |format|
-      if @booking.save
+      if @condition
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
       #  format.html { render :new }
-        format.html { redirect_to bookings_search_static_path, notice:'You can only book one room at one time'  }
+        format.html { redirect_to static_search_path(:bookinguserid => @userid ), notice:'You can only book one room at one time'  }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
@@ -86,12 +91,12 @@ return @return_params
   end
 
   def search_static
-    session[:user]['bookinguserid']=params[:bookinguserid]
+    session[:user]['bookinguserid']= params[:bookinguserid] if params.key? "bookinguserid"
     render :search
   end
 
   def booking_history
-    session[:user]['historyuserid']=params[:historyuserid]
+    session[:user]['historyuserid'] = params[:historyuserid] if params.key? "historyuserid"
   end
 
   private
