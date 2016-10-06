@@ -31,7 +31,7 @@ okay, then all future bookings of the room are delted, but the past bookings wil
 Special Case 2: When Admin deltes a user who has a room booked.
 In this case, all the upcoming bookings of this user are deleted. Past bookings of this user however remain in the history.
 
-Special Case 3:if a library member requests to book the same room multiple times. He wont be shown the room if he is trying to book the same room again for the same time
+Special Case 3:if a library member requests to book the same room multiple times. He wont be shown the room in the search if he is trying to book the same room again for the same time. 
 However, if he wants to book the same room for another timeslot, he will be allowed to do so.
 
 Extra credit Part 2: Admin can book 2 rooms for a user at the same time.
