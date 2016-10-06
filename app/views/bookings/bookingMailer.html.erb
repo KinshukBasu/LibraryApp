@@ -1,0 +1,25 @@
+<div>
+  <br><br>Enter email ids of people you wish to send this notification.<br>
+  Separate multiple ids by semi-colon ";"<br><br>
+
+  <%= form_tag({controller: bookings_path, action: 'send_mail'},{:class => 'booking_mailer_form'}) do%>
+
+      <div class="email_field">
+        <%= label_tag(:email, 'Email') %>
+        <%= text_field_tag :email %>
+      </div>
+
+      <div class="field">
+        <%= hidden_field_tag(:id, @booking.id) %>
+      </div>
+
+
+      <div class="actions">
+        <%= submit_tag('Mail')%>
+      </div>
+  <% end%>
+
+</div>
+
+<div class="bookingMailMessage"></div>
+

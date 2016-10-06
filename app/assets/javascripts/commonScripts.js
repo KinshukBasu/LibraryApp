@@ -6,6 +6,7 @@ $(document).on('turbolinks:load', function(){
     intialize();
     checkLogIn();
     checkSignUp();
+    checkEmail();
 })
 
 function intialize(){
@@ -80,6 +81,16 @@ function validateSignUpForm(formName){
     });
 }
 
+function validateBookingEmailForm(formName){
+    $(formName).validate({
+        debug: true,
+        rules: {
+            "email": {required: true},
+        }
+    });
+
+}
+
 function checkLogIn(){
     validateLogInForm(".signonform");
     $(".signonform").on('submit',function (e){
@@ -132,6 +143,43 @@ function checkSignUp(){
                     $.rails.enableFormElements($($.rails.formSubmitSelector));
                     $(".signupMessage").html(msg+"<br>Please try again.")
                     $(".signupMessage").show();
+                }
+            }
+        });
+
+    });
+}
+
+function showBookingMailPopup(bookingId){
+    window.open("/bookings/bookingMailer/"+bookingId,'Mail Booking','titlebar=no,fullscreen=no,height=300,width=600,status=no,toolbar=no,location=no,menubar=no,scrollbars=yes,resizable=no');
+    return false;
+}
+
+function checkEmail(){
+    validateBookingEmailForm(".booking_mailer_form");
+    $(".booking_mailer_form").on('submit',function (e){
+        $(".bookingMailMessage").hide();
+        $(".bookingMailMessage").html("")
+        //$(".booking_mailer_form").hide();
+
+        e.preventDefault();
+
+        $.ajax({
+            type: 'post',
+            url: '/bookings/sendMail',
+            data: $('.booking_mailer_form').serialize(),
+            success: function (data) {
+                $(".booking_mailer_form").trigger("reset");
+                $.rails.enableFormElements($($.rails.formSubmitSelector));
+                if (data.message == "success"){
+
+                    $(".bookingMailMessage").html("Email has been sent successfully")
+                    $(".bookingMailMessage").show();
+                    setTimeout(function(){ window.close();}, 5000);
+                }else{
+                    $('.booking_mailer_form').show();
+                    $(".bookingMailMessage").html("Email could not be sent. Please try again or close the window.")
+                    //$(".bookingMailMessage").show();
                 }
             }
         });

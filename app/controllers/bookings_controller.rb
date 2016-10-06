@@ -1,5 +1,5 @@
 class BookingsController < AccessController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :bookingMailer, :send_mail]
 
 
   # GET /bookings
@@ -105,6 +105,32 @@ return @return_params
     @upcomingbooking = Booking.where("room_no = ? AND intime >= ?",roomid,DateTime.current)
     @pastbooking = Booking.where("room_no = ? AND intime < ?",roomid,DateTime.current)
     @deletedbooking = Deletedbooking.where("room_no = ?",roomid)
+  end
+
+  def bookingMailer
+
+  end
+
+  def send_mail
+
+    user = User.find_by_id(@booking.userid)
+    room = Room.find_by_id(@booking.room_no)
+
+    bookingInfo = BookingInfo.new
+    bookingInfo.name =user.name
+    bookingInfo.userEmail =user.email
+    bookingInfo.location =room.location
+    bookingInfo.roomNumber = room.id
+    bookingInfo.startTime = @booking.intime.strftime('%H:%M')
+    bookingInfo.date = @booking.intime.strftime('%m/%d/%Y')
+    bookingInfo.email = params[:email]
+    bookingInfo.duration = '2 hours'
+    if(UserMailer.booking_intimation(bookingInfo).deliver)
+      render :json =>{:message => "success"}
+      return
+    else
+      return render :json =>{:message => "failure"}
+    end
   end
 
   private

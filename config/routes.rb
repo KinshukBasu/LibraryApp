@@ -34,6 +34,10 @@ Rails.application.routes.draw do
 
   post '/bookings', to: 'bookings#create', as: 'create_bookings'
 
+  get '/bookings/bookingMailer/:id', to: 'bookings#bookingMailer', as: 'booking_mailer'
+
+  post '/bookings/sendMail', to: 'bookings#send_mail', as:'booking_send_mail'
+
   resources :bookings do
     get :search, :on => :member, :as => :search
   end

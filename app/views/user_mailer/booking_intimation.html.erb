@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>Hi,</p>
+<p>
+  <%= @user.name %> (<%= @user.userEmail %>) has booked a room on  <%= @user.date%> and has invited you.
+</p>
+<p>
+  Below are the details of the room:<br><br>
+  Room Number: <%= @user.roomNumber %><br>
+  Location: <%= @user.location %><br>
+  Start Time: <%= @user.startTime %><br>
+  Duration: <%= @user.duration%><br>
+</p>
+<p>Hope you have a great session ahead.</p>
+<p>
+  Go Wolfpack \m/ <br><br>
+
+  Regards,<br>
+  Team Wolfpack Library
+</p>
+</body>
+</html>

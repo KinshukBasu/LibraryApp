@@ -12,10 +12,13 @@
 
 <p>
   <strong>Intime:</strong>
-  <%= @booking.intime %>
+  <%= @booking.intime.strftime('%m/%d/%Y %H:%M') %>
 </p>
 
 
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', "/bookings/search_static" %>
+<% if  DateTime.parse(@booking.intime.strftime('%m/%d/%Y %H:%M')) > DateTime.parse(Time.now.strftime('%m/%d/%Y %H:%M')) %>
+    <button onclick="showBookingMailPopup(<%= @booking.id %>)"> Send email </button>
+<% end%>
