@@ -6,8 +6,9 @@ class BookingsController < AccessController
   # GET /bookings.json
   def index
 
-    @bookings=Booking.all
-    @deleted=Deletedbooking.all
+    @upcomingbooking = Booking.where("intime >= ?",DateTime.current)
+    @pastbooking = Booking.where("intime < ?",DateTime.current)
+    @deletedbooking = Deletedbooking.all
 
   end
 
