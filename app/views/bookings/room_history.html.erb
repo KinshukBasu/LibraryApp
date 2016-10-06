@@ -7,6 +7,7 @@
     <thead>
     <tr>
       <th>Booking ID</th>
+      <th>User Id.</th>
       <th>Room No.</th>
       <th>Check In Time</th>
 
@@ -17,6 +18,7 @@
     <% @upcomingbooking.each do |upcomingbooking| %>
         <tr>
           <td><%= upcomingbooking.id %></td>
+          <td><%= upcomingbooking.userid %></td>
           <td><%= upcomingbooking.room_no %></td>
           <td><%= upcomingbooking.intime.strftime('%m/%d/%Y %H:%M') %></td>
         </tr>
@@ -29,6 +31,7 @@
     <thead>
     <tr>
       <th>Booking ID</th>
+      <th>User Id.</th>
       <th>Room No.</th>
       <th>Check In Time</th>
 
@@ -39,6 +42,7 @@
     <% @pastbooking.each do |pastbooking| %>
         <tr>
           <td><%= pastbooking.id %></td>
+          <td><%= pastbooking.userid %></td>
           <td><%= pastbooking.room_no %></td>
           <td><%= pastbooking.intime.strftime('%m/%d/%Y %H:%M') %></td>
         </tr>
@@ -51,6 +55,7 @@
     <thead>
     <tr>
       <th>Booking ID</th>
+      <th>User Id.</th>
       <th>Room No.</th>
       <th>Check In Time</th>
 
@@ -61,6 +66,7 @@
     <% @deletedbooking.each do |deletedbooking| %>
         <tr>
           <td><%= deletedbooking.id %></td>
+          <td><%= deletedbooking.userid %></td>
           <td><%= deletedbooking.room_no %></td>
           <td><%= deletedbooking.intime.strftime('%m/%d/%Y %H:%M') %></td>
         </tr>
