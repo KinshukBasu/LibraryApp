@@ -1,4 +1,7 @@
-<h1>Avilable booking/s</h1>
+<h1>Available booking/s</h1>
+<% bookings = @return_params %>
+
+<% if bookings.size > 0 %>
 <table>
   <tr>
     <th>Room Number</th>
@@ -7,7 +10,7 @@
     <th>Date</th>
     <th>Time</th>
   </tr>
-  <% @return_params.each do |data| %>
+  <% bookings.each do |data| %>
       <tr>
         <td><%= data[2] %></td>
         <td><%= data[4] %></td>
@@ -16,6 +19,9 @@
         <td><%= data[1]+":00" %></td>
         <td><%= link_to 'Book this room', create_bookings_path(:time => data[1], :date => data[0], :room_no => data[2]), :method => "post" %></td>
       </tr>
+  <% end %>
+    <% else %>
+    There are no bookings matching your criteria.
   <% end %>
 </table>
 

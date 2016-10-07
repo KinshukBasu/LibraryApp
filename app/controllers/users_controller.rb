@@ -1,5 +1,6 @@
 class UsersController < AccessController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :destroy]
+  before_action :set_user_update, only: [:update]
 
   # GET /users
   # GET /users.json
@@ -86,10 +87,18 @@ class UsersController < AccessController
   def update
     respond_to do |format|
       if @user.update(user_edit_params)
-        format.html { redirect_to welcome_display_path, notice: 'User was successfully updated.' }
+        redirect_to welcome_display_path, notice: 'User was successfully updated.'
+        return
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+
+        message = ''
+        @user.errors.messages.each do|k,n|
+          message = message.concat(n[0].to_s).concat('<br>')
+        end
+
+        message.chomp('<br>')
+        render :json =>{:message => message}
+        return
       end
     end
   end
@@ -125,12 +134,17 @@ class UsersController < AccessController
       @user = User.find_by_id(params[:id])
     end
 
+  def set_user_update
+    @user = User.find_by_id(params[:user][:id])
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :name, :password, :password_confirmation, :role)
     end
 
   def user_edit_params
-    params.require(:user).permit(:name, :address, :phoneNumber)
+
+      params.require(:user).permit(:name, :address, :phoneNumber, :password, :password_confirmation)
   end
 end

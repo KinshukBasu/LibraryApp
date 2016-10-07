@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   post '/bookings/sendMail', to: 'bookings#send_mail', as:'booking_send_mail'
 
+  post '/users/update', to: 'users#update', as: 'user_update_post'
+
   resources :bookings do
     get :search, :on => :member, :as => :search
   end

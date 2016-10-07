@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function(){
     checkLogIn();
     checkSignUp();
     checkEmail();
+    checkUserEditForm();
 })
 
 function intialize(){
@@ -80,6 +81,18 @@ function validateSignUpForm(formName){
         }
     });
 }
+function validateUserEditForm(formName){
+    $(formName).validate({
+        debug: true,
+        rules: {
+            "user[name]":{required:true},
+            "user[address]":{required:true},
+            "user[password]": {minlength: 6},
+            "user[password_confirmation]": {equalTo: "#user_password"},
+            "user[phoneNumber]":{required:false, phoneUS: true},
+        }
+    });
+}
 
 function validateBookingEmailForm(formName){
     $(formName).validate({
@@ -132,7 +145,7 @@ function checkSignUp(){
             success: function (data) {
                 if(data.message == "success"){
                     $(".signUpHeader").html("Data verified.");
-                    $(".signupMessage").html("Welome to the pack!<br>Please visit the <a href='/login'>login page</a> to enter the Library.")
+                    $(".signupMessage").html("Welcome to the pack!<br>Please visit the <a href='/login'>login page</a> to enter the Library.")
                     $(".signupMessage").show();
                 }else{
                     $(".signUpHeader").html("Let's get you signed up");
@@ -180,6 +193,40 @@ function checkEmail(){
                     $('.booking_mailer_form').show();
                     $(".bookingMailMessage").html("Email could not be sent. Please try again or close the window.")
                     //$(".bookingMailMessage").show();
+                }
+            }
+        });
+
+    });
+}
+
+function checkUserEditForm(){
+    validateUserEditForm(".edit_user");
+    $(".edit_user").on('submit',function (e){
+
+        $(".userEditFormMessage").hide();
+        $(".userEditFormMessage").html("");
+
+
+
+        e.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: '/users/update',
+            data: $('.edit_user').serialize(),
+            success: function (data) {
+                if(data.message != "success"){
+
+                    var msg = data.message;
+
+                    $(".edit_user").trigger("reset");
+                    $('.edit_user').show();
+
+                    $.rails.enableFormElements($($.rails.formSubmitSelector));
+
+                    $(".userEditFormMessage").html(msg+"<br>Please try again.");
+
+                    $(".userEditFormMessage").show();
                 }
             }
         });

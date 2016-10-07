@@ -25,6 +25,18 @@
       <%= f.label :phoneNumber%>
       <%= f.text_field :phoneNumber%>
     </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <%= f.hidden_field :id, :value => user.id %>
+
     <div class="actions">
       <%= f.submit %>
     </div>

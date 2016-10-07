@@ -88,6 +88,14 @@ nav {
 
 }
 
+.wolfPackLibraryImage{
+    position:fixed;
+    top:1%;
+    left:37%;
+    width:25%;
+    height:8%;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -100,4 +108,10 @@ nav {
 ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     -webkit-box-shadow: inset 0 0 6px rgba(1,2,1,0.5);
+}
+
+button{
+    background-color: darkred;
+    border-color: darkred;
+    color: white;
 }

@@ -26,19 +26,18 @@
         <% if (user.role != 'Super')%>
           <%= link_to 'Edit', root_path+"users/edit/"+user['id'].to_s %>
         <%end%>
-          <% if (user.role == 'Normal')%>
+         <% if (user.role == 'Normal')%>
         <%= link_to 'Check Reservations', bookingHistory_path(:historyuserid =>user.id) %>
           <%end%>
         <% if (user.role == 'Normal')%>
-              <button onclick="makeAdmin(<%= user.id %>)"> Make Admin</button>
+           <%=link_to ' Make a Booking', static_search_path(:bookinguserid => user.id ) %>
         <%end%>
-          <% if (user.role == 'Normal')%>
-
-              <td><%=link_to ' Make a Booking', static_search_path(:bookinguserid => user.id ) %></td>
-          <%end%>
-          <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
-              <td> <button onclick="deleteUser(<%= user.id %>)"> Delete User</button></td>
-          <% end%>
+        <% if (user.role == 'Normal')%>
+          <button onclick="makeAdmin(<%= user.id %>)"> Make Admin</button>
+        <%end%>
+        <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
+           <button onclick="deleteUser(<%= user.id %>)"> Delete User</button>
+        <% end%>
         </td>
       </tr>
   <% end %>

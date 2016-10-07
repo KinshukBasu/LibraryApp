@@ -8,6 +8,7 @@ class SignUpController < ApplicationController
 
     @adminUser = User.find_by(:email=> 'kinshuk@gmail.com')
 
+
     if(@adminUser != nil)
     @adminUser.update(:role => 'Super')
     end
@@ -15,16 +16,17 @@ class SignUpController < ApplicationController
     @reader = User.new(reader_params)
 
     if(@reader.save)
+
       render :json =>{:message => "success"}
       return
     else
 
      message = ""
       @reader.errors.messages.each do|k,n|
-        message = message.concat(n[0].to_s).concat(", ")
+        message = message.concat(n[0].to_s).concat("<br>")
       end
 
-     message = message.chomp(', ')
+     message = message.chomp('<br>')
 
       render :json =>{:message => message}
       return

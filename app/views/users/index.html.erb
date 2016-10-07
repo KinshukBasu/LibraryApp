@@ -30,13 +30,7 @@
               <%= link_to 'Edit', root_path+"users/edit/"+user['id'].to_s %>
           <%end%>
 
-          <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end%>
 
-          <% if (user.role == 'Normal')%>
-              <td><button onclick="makeAdmin(<%= user.id %>)"> Make Admin</button></td>
-          <%end%>
         <% if (user.role == 'Normal')%>
             <td><%=link_to ' Make a Booking', static_search_path(:bookinguserid => user.id ) %></td>
         <%end%>
@@ -45,6 +39,13 @@
         <%end%>
 
         </td>
+        <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
+            <td><button onclick="deleteUser(<%= user.id %>)"> Delete User</button></td>
+        <% end%>
+
+        <% if (user.role == 'Normal')%>
+            <td><button onclick="makeAdmin(<%= user.id %>)"> Make Admin</button></td>
+        <%end%>
       </tr>
 
       </tr>
