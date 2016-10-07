@@ -46,10 +46,7 @@
       <%=f.select(:role,options_for_select([['Normal', 'Normal'], ['Admin', 'Admin']]))%>
     </div>
 
-    <div class="field">
-      <%= f.label :allow_multiple %>
-      <%=f.select(:allow_multiple,options_for_select([['Disallow', false],['Allow', true] ]))%>
-    </div>
+
 
     <div class="actions">
       <%= f.submit %>
