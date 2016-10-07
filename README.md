@@ -44,7 +44,7 @@ However, if he wants to book the same room for another timeslot, he will be allo
 
 Extra credit Part 1: Mailing functionality implemented.
 
-Extra credit Part 2: Admin can allow user to book multiple rooms at the same time. The 'allow multiple' option enables the admin to give users the necessary right. Admin can change this permission if he wants to:  Home page-> view all users -> edit ->Allow Multiple. The admin also can book multiple rooms at the same time for any user.  The 'allow multiple' option makes no sense in case of the admin as he can always make multiple bookings.
+Extra credit Part 2: Admin can allow user to book multiple rooms at the same time. The 'allow multiple' option enables the admin to give users the necessary right. For doing this admin needs to: Home page-> view all users -> edit ->Allow Multiple. The admin also can book multiple rooms at the same time for any user if required. The 'allow multiple' option makes no sense in case of the admin as he can always make multiple bookings at the same time.
 
 User model has been tested.
 
