@@ -40,7 +40,8 @@
 
         </td>
         <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% @msg=upcoming_user_boookings(user.id) %>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: @msg } %></td>
         <% end%>
 
         <% if (user.role == 'Normal')%>

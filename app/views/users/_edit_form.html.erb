@@ -25,6 +25,8 @@
       <%= f.label :phoneNumber%>
       <%= f.text_field :phoneNumber%>
     </div>
+
+    <% if((session[:user]['id']) == user.id) %>
     <div class="field">
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -34,6 +36,14 @@
       <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation %>
     </div>
+        <% end %>
+
+    <% if((session[:user]['role']) != "Normal") %>
+    <div class="field">
+      <%= f.label :allow_multiple %>
+      <%=f.select(:allow_multiple,options_for_select([['',user.allow_multiple],['Disallow', false],['Allow', true] ]))%>
+    </div>
+        <% end %>
 
     <%= f.hidden_field :id, :value => user.id %>
 

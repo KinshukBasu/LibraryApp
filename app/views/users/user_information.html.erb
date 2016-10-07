@@ -35,9 +35,7 @@
         <% if (user.role == 'Normal')%>
           <button onclick="makeAdmin(<%= user.id %>)"> Make Admin</button>
         <%end%>
-        <% if ((user.id != session[:user]['id']) && user.role != 'Super')%>
-           <button onclick="deleteUser(<%= user.id %>)"> Delete User</button>
-        <% end%>
+
         </td>
       </tr>
   <% end %>

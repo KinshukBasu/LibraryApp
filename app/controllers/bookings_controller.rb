@@ -37,7 +37,7 @@ class BookingsController < AccessController
     @intime = Time.new(@date.year, @date.month, @date.day,@t.to_i,0, 0)
     @booking = Booking.new({:userid=>@userid,:room_no=>@room_no,:intime=>@intime})
 
-    if((session[:user]['role']) != "Normal")
+    if((session[:user]['role']) != "Normal" or (session[:user]['allow_multiple']))
       @condition=@booking.save(validate: false)
     else
       @condition=@booking.save

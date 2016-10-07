@@ -145,6 +145,6 @@ class UsersController < AccessController
 
   def user_edit_params
 
-      params.require(:user).permit(:name, :address, :phoneNumber, :password, :password_confirmation)
+      params.require(:user).permit(:name, :address, :phoneNumber, :password, :password_confirmation,:allow_multiple)
   end
 end
