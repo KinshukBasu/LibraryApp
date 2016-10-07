@@ -34,17 +34,17 @@ Normal User functions:
 3) View Room details: Home Page -> View all rooms.
 
 Special Case 1: When Admin deletes a room for which there exists a booking
-System gives a warning saying that there is a booking for this room in the future. Are you sure you want to delete? If the admin clicks 
-okay, then all future bookings of the room are delted, but the past bookings will remain in the history.
+System gives a warning saying that there are bookings for this room currently or in the future. Are you sure you want to delete? If the admin clicks okay, then all future bookings of the room are delted, but the past bookings will remain in the history.
 
 Special Case 2: When Admin deltes a user who has a room booked.
-In this case, all the upcoming bookings of this user are deleted. Past bookings of this user however remain in the history.
+In this case, system gives a warning message similar to Case 1. If Admin agrees, then all the upcoming bookings of this user are deleted. Past bookings of this user however remain in the history.
 
-Special Case 3:if a library member requests to book the same room multiple times. He wont be shown the room in the search if he is trying to book the same room again for the same time. 
+Special Case 3:if a library member requests to book the same room multiple times. He wont be shown the room in the search if he is trying to book the same room again for the same time slot. 
 However, if he wants to book the same room for another timeslot, he will be allowed to do so.
 
 Extra credit Part 1: Mailing functionality implemented.
-Extra credit Part 2: Admin can book 2 rooms for a user at the same time.
+
+Extra credit Part 2: Admin can allow user to book multiple rooms at the same time. The 'allow multiple' option enables the admin to give users the necessary right. Admin can change this permission if he wants to:  Home page-> view all users -> edit ->Allow Multiple. The admin also can book multiple rooms at the same time for any user.  The 'allow multiple' option makes no sense in case of the admin as he can always make multiple bookings.
 
 User model has been tested.
 
