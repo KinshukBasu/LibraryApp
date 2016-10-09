@@ -2,12 +2,12 @@ module Record
 
   def getUpComingBookings
     userID = get_correct_uid
-     @booking = Booking.where("userid = ? AND intime >= ? AND booking_status <>'cancelled'",userID, DateTime.current)
+     @booking = Booking.where("userid = ? AND intime >= ? AND booking_status <>'cancelled'",userID, DateTime.current).order(:intime)
   end
 
   def getPastBookings
     userID = get_correct_uid
-    @booking = Booking.where("userid = ? AND intime < ? AND booking_status <>'cancelled'",userID,DateTime.current)
+    @booking = Booking.where("userid = ? AND intime < ? AND booking_status <>'cancelled'",userID,DateTime.current).order(intime: :desc)
   end
 
   def getOngoingBookings
@@ -17,7 +17,7 @@ module Record
 
   def getDeletedBookings
     userID = get_correct_uid
-    @booking = Deletedbooking.where("userid = ? ",userID)
+    @booking = Deletedbooking.where("userid = ? ",userID).order(intime: :desc)
   end
   def upcoming_room_boookings(id)
     @upbooking=Booking.where("room_no = ? AND intime > ?",id,DateTime.current)

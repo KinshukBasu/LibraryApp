@@ -6,9 +6,9 @@ class BookingsController < AccessController
   # GET /bookings.json
   def index
 
-    @upcomingbooking = Booking.where("intime >= ?",DateTime.current)
-    @pastbooking = Booking.where("intime < ?",DateTime.current)
-    @deletedbooking = Deletedbooking.all
+    @upcomingbooking = Booking.where("intime >= ?",DateTime.current).order(:intime)
+    @pastbooking = Booking.where("intime < ?",DateTime.current).order(intime: :desc)
+    @deletedbooking = Deletedbooking.all.order(intime: :desc)
 
   end
 
@@ -102,9 +102,9 @@ return @return_params
 
   def room_history
     roomid = params[:historyroomid] if params.key? "historyroomid"
-    @upcomingbooking = Booking.where("room_no = ? AND intime >= ?",roomid,DateTime.current)
-    @pastbooking = Booking.where("room_no = ? AND intime < ?",roomid,DateTime.current)
-    @deletedbooking = Deletedbooking.where("room_no = ?",roomid)
+    @upcomingbooking = Booking.where("room_no = ? AND intime >= ?",roomid,DateTime.current).order(:intime)
+    @pastbooking = Booking.where("room_no = ? AND intime < ?",roomid,DateTime.current).order(intime: :desc)
+    @deletedbooking = Deletedbooking.where("room_no = ?",roomid).order(intime: :desc)
   end
 
   def bookingMailer
