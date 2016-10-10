@@ -1,3 +1,4 @@
+<%- # Form for displaying users to admin. -%>
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
@@ -22,7 +23,7 @@
         <td><%= user.role %></td>
 
        <%#= <td><%= link_to 'Edit', edit_user_path(user) %>
-
+        <%- # Depending on role of the user in consideration, show admin various options -%>
 
         <td>
           <% if (user.role != 'Super')%>

@@ -4,8 +4,8 @@ class BookingsController < AccessController
 
   # GET /bookings
   # GET /bookings.json
+  # Get upcoming, past and deleted bookings.
   def index
-
     @upcomingbooking = Booking.where("intime >= ?",DateTime.current).order(:intime)
     @pastbooking = Booking.where("intime < ?",DateTime.current).order(intime: :desc)
     @deletedbooking = Deletedbooking.all.order(intime: :desc)
@@ -29,6 +29,8 @@ class BookingsController < AccessController
 
   # POST /bookings
   # POST /bookings.json
+  # Create new bookings taking into account who is actually booking, whether admin or normal user
+  # Also check if user has the ability to book multiple rooms at the same time.
   def create
     @userid=session[:user]['bookinguserid']
     @room_no=params[:room_no]
@@ -71,6 +73,7 @@ class BookingsController < AccessController
 
   # DELETE /bookings/1
   # DELETE /bookings/1.json
+  # Delete bookings from bookings table and add them to deletedbookings table.
   def destroy
     @deletedbooking = Deletedbooking.new({:userid=>@booking.userid,:room_no=>@booking.room_no,:intime=>@booking.intime})
     @deletedbooking.save
@@ -82,6 +85,7 @@ class BookingsController < AccessController
     end
   end
 
+  #Search for avaialble rooms based on various criteria
   def search
 pass_params=params
 pass_params[:date]=Date.new(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i)
@@ -91,15 +95,18 @@ return @return_params
 
   end
 
+  #Decide who is actually booking, whether it is a user or Admin. Render search page after that
   def search_static
     session[:user]['bookinguserid']= params[:bookinguserid] if params.key? "bookinguserid"
     render :search
   end
 
+#Decide who is checking user history, whether it is an admin or the user himself
   def booking_history
     session[:user]['historyuserid'] = params[:historyuserid] if params.key? "historyuserid"
   end
 
+  # Return upcoming, past and deleted bookings for a particular room.
   def room_history
     roomid = params[:historyroomid] if params.key? "historyroomid"
     @upcomingbooking = Booking.where("room_no = ? AND intime >= ?",roomid,DateTime.current).order(:intime)
@@ -110,7 +117,7 @@ return @return_params
   def bookingMailer
 
   end
-
+#Method for sending emails.
   def send_mail
 
     user = User.find_by_id(@booking.userid)

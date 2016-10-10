@@ -29,11 +29,9 @@ class UsersController < AccessController
     respond_to do |format|
       format.html { redirect_to user_information_path(:name => params[:name] , :email => params[:email], :phoneNumber => params[:phoneNumber]) }
     end
-
-
-
   end
 
+  #Search for user based on certain criteria from admin homepage
   def user_information
     if(session[:user]['role'] == 'Normal')
       redirect_to welcome_display_path
@@ -54,7 +52,7 @@ class UsersController < AccessController
     end
     render 'user_information', resultUser: @resultUser
   end
-
+#Make user into an admin
   def change_user_role
     @changeUser = User.find(params[:id])
 
@@ -105,6 +103,7 @@ class UsersController < AccessController
 
   # DELETE /users/1
   # DELETE /users/1.json
+  # Delete user and also take care of his bookings
   def destroy
     @user.destroy
     delete_user_bookings(@user.id)
@@ -123,7 +122,7 @@ class UsersController < AccessController
     end
 
   end
-
+# Delete future bookings for a deleted user.
   def delete_user_bookings(id)
     Booking.where("userid = ? AND intime > ?",id,DateTime.current).destroy_all
   end
@@ -143,6 +142,7 @@ class UsersController < AccessController
       params.require(:user).permit(:email, :name, :password, :password_confirmation, :role)
     end
 
+#Define safe parameters while updating a user
   def user_edit_params
 
       params.require(:user).permit(:name, :address, :phoneNumber, :password, :password_confirmation,:allow_multiple)

@@ -19,11 +19,9 @@ Admin functions:
 
 3)Creating New User: Home page -> Create a New User
 
-4)View Users, Make Bookings for Users, Edit/Destroy Users, View User Booking History, Make user into Admin: Home page-> View All users  
+4)View Users, Make/Cancel Bookings for Users, Edit/Destroy Users, View User Booking History, Make user into Admin, Allow user to make multiple bookings: Home page-> View All users  
 
-5)Search For Specific users:Home page -> Search For users 
-
-6)View all bookings: Home page -> View all Bookings
+5)View all bookings: Home page -> View all Bookings
 
 Normal User functions:
 
@@ -42,7 +40,7 @@ In this case, system gives a warning message similar to Case 1. If Admin agrees,
 Special Case 3:if a library member requests to book the same room multiple times. He wont be shown the room in the search if he is trying to book the same room again for the same time slot. 
 However, if he wants to book the same room for another timeslot, he will be allowed to do so.
 
-Extra credit Part 1: Mailing functionality implemented.
+Extra credit Part 1: Mailing functionality implemented. Book a room and you will see the required option.
 
 Extra credit Part 2: Admin can allow user to book multiple rooms at the same time. The 'allow multiple' option enables the admin to give users the necessary right. For doing this admin needs to: Home page-> view all users -> edit ->Allow Multiple. The User then has to logout and login again, if he was already logged in when admin made the change. The admin also can book multiple rooms at the same time for any user if required. The 'allow multiple' option makes no sense in case of the admin as he can always make multiple bookings at the same time.
 

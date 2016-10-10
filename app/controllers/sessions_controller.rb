@@ -3,7 +3,7 @@ class SessionsController < AccessController
   def destroy
 
   end
-
+# Sign-in/ Sign-out functionality defined
   def signon
     if(params[:what] == 'logout')
       session[:user] = nil

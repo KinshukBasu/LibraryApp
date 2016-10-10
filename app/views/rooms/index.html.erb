@@ -1,3 +1,4 @@
+<%- # Form for displaying rooms -%>
 <p id="notice"><%= notice %></p>
 
 <h1>Rooms</h1>
@@ -18,7 +19,7 @@
         <td><%= room.id %></td>
         <td><%= room.location %></td>
         <td><%= room.size %></td>
-
+        <%- # Depending on user role,show required options -%>
         <% if((session[:user]['role']) != "Normal")%>
             <td><%= link_to 'Show', room %></td>
             <td><%= link_to 'Edit', root_path+"rooms/edit/"+room['id'].to_s %></td>

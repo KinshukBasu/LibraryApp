@@ -1,7 +1,9 @@
+<%- # This is the main home page. -%>
 <div><%= notice %></div>
 
 <h1>Welcome <% if (@user['role'] != 'Normal')%> Admin <% end%> <%= @user['name'] %> to Library</h1>
 
+<%- # Normal Users can view their upcoming bookings. -%>
 <% if (@user['role'] == 'Normal')%>
 <div class=".upcomingBookings">
   <% upcomingBoookings = getUpComingBookings%>
@@ -40,14 +42,14 @@
 
 
 <br><br>
+
+    <%- # Normal users can view their history or make a booking -%>
 <div>
 
       Click <%=link_to 'here', bookingHistory_path(:historyuserid =>session[:user]['id'] )%> if you would like to view your booking history
 
 </div>
-
-
-<br><br>
+    <br><br>
 
 <br><br>
 <div>
@@ -56,6 +58,7 @@
 <br><br>
 <% end %>
 
+<%- # Certain functionality specific to normal user or admin. -%>
 <% if((session[:user]['role']) == "Normal")%>
     <div>
       <%=link_to 'View all rooms', "/rooms" %>

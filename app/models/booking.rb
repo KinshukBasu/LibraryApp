@@ -1,7 +1,9 @@
 class Booking < ApplicationRecord
   validates :intime, uniqueness: { scope: :userid
  }
-
+# Validation criteria and room availibility search
+#First this gets the upcoming bookings and then returns available time slots accordingly.
+# Comments are added on top of each method in Bookinghelperservice class
   def self.find_availiblty(criteria_params)
     return_hash=Bookinghelperservice.initialize_hash
     returnValues=Bookinghelperservice.get_current_bookings(criteria_params)

@@ -2,8 +2,7 @@ class RoomsController < AccessController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
 
-  # GET /rooms
-  # GET /rooms.json
+  # GET /rooms which have not been deleted
   def index
    # @rooms = Room.all
     @rooms=Room.where(is_existing: true)
@@ -55,6 +54,8 @@ class RoomsController < AccessController
 
   # DELETE /rooms/1
   # DELETE /rooms/1.json
+  #Update is_existing =false for rooms which are to be deleted. Also take care of their booking
+  #history
   def destroy
     @room = Room.find(params[:id])
     @room.update_attributes!(is_existing: false)
@@ -67,6 +68,7 @@ class RoomsController < AccessController
     end
   end
 
+  #Delete upcoming bookings for a rooms which is to be deleted
   def delete_from_booking_history
     Booking.where("room_no = ? AND intime > ?",params[:id],DateTime.current).destroy_all
 

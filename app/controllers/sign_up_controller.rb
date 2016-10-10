@@ -4,6 +4,7 @@ class SignUpController < ApplicationController
   end
 
   # POST
+  #Creation of new user on sign up and initialization of Super Admin
   def create
 
     @adminUser = User.find_by(:email=> 'kinshuk@gmail.com')

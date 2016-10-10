@@ -2,7 +2,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-
+#User validation based on various criteria
 
   validates :name,:email,:address, presence: {message: '%{attribute} cannot be blank.'}
   #validates :password_digest, presence: {on: :create, message: 'Password should match.'}

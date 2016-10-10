@@ -14,7 +14,7 @@
   <strong>Size:</strong>
   <%= @room.size %>
 </p>
-
+<%- # Give warning in case of upcoming or current bookings. -%>
 <% @msg=upcoming_room_boookings(@room.id) %>
 <%= link_to 'Destroy', @room, method: :delete, data: { confirm: @msg } %> |
 

@@ -1,3 +1,4 @@
+<%- #Sign up page for first time users -%>
 <%= form_for(reader, url: sign_up_create_post_path) do |f| %>
     <% if reader.errors.any? %>
         <div id="error_explanation">
